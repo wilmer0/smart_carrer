@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D28689C6-9C95-40EE-9AB7-9A4FAEA51FEE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>smart_carrer</RootNamespace>
+    <AssemblyName>smart_carrer</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>faq.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="busqueda_carrera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="busqueda_carrera.Designer.cs">
+      <DependentUpon>busqueda_carrera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="busqueda_facultad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="busqueda_facultad.Designer.cs">
+      <DependentUpon>busqueda_facultad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="busqueda_pregunta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="busqueda_pregunta.Designer.cs">
+      <DependentUpon>busqueda_pregunta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="busqueda_respuesta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="busqueda_respuesta.Designer.cs">
+      <DependentUpon>busqueda_respuesta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="busqueda_tests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="busqueda_tests.Designer.cs">
+      <DependentUpon>busqueda_tests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="carreras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="carreras.Designer.cs">
+      <DependentUpon>carreras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="facultades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="facultades.Designer.cs">
+      <DependentUpon>facultades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="hacer_test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hacer_test.Designer.cs">
+      <DependentUpon>hacer_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mantenimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mantenimientos.Designer.cs">
+      <DependentUpon>mantenimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menu.Designer.cs">
+      <DependentUpon>menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="preguntas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="preguntas.Designer.cs">
+      <DependentUpon>preguntas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="respuestas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="respuestas.Designer.cs">
+      <DependentUpon>respuestas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="splashscreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="splashscreen.Designer.cs">
+      <DependentUpon>splashscreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tests.Designer.cs">
+      <DependentUpon>tests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="utilidades.cs" />
+    <EmbeddedResource Include="busqueda_carrera.resx">
+      <DependentUpon>busqueda_carrera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="busqueda_facultad.resx">
+      <DependentUpon>busqueda_facultad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="busqueda_pregunta.resx">
+      <DependentUpon>busqueda_pregunta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="busqueda_respuesta.resx">
+      <DependentUpon>busqueda_respuesta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="busqueda_tests.resx">
+      <DependentUpon>busqueda_tests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="carreras.resx">
+      <DependentUpon>carreras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="facultades.resx">
+      <DependentUpon>facultades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hacer_test.resx">
+      <DependentUpon>hacer_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mantenimientos.resx">
+      <DependentUpon>mantenimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu.resx">
+      <DependentUpon>menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="preguntas.resx">
+      <DependentUpon>preguntas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="respuestas.resx">
+      <DependentUpon>respuestas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="splashscreen.resx">
+      <DependentUpon>splashscreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tests.resx">
+      <DependentUpon>tests.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_file_disk_open_searsh_loading_clipboard_1513.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_servicios1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opciones1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\categoria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_nosotros-300x300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question-mark-310100_960_720.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DiscusionRespuesta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3499424w91v795brv.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down-yellow-arrow-icon-clip-art.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\elegir-carrera-universitaria.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="faq.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,14 @@
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\bin\Debug\smart_carrer.exe
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\bin\Debug\smart_carrer.pdb
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.csprojResolveAssemblyReference.cache
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.busqueda_facultad.resources
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.carreras.resources
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.facultades.resources
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.Form1.resources
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.Properties.Resources.resources
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.tests.resources
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.csproj.GenerateResource.Cache
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.exe
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.pdb
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.menu.resources
+C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Debug\smart_carrer.mantenimientos.resources
