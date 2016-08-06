@@ -20,3 +20,26 @@ C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\
 C:\Users\wilmer\Documents\Visual Studio 2013\Projects\smart_carrer\smart_carrer\obj\Release\smart_carrer.respuestas.resources
 C:\Users\wilmer\documents\visual studio 2013\Projects\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_respuesta.resources
 C:\Users\wilmer\documents\visual studio 2013\Projects\smart_carrer\smart_carrer\obj\Release\smart_carrer.hacer_test.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.exe
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.pdb
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\bin\Release\smart_carrer.exe
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\bin\Release\smart_carrer.pdb
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.csprojResolveAssemblyReference.cache
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_carrera.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_facultad.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_pregunta.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_respuesta.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_tests.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.carreras.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.facultades.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.Form1.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.hacer_test.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.mantenimientos.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.menu.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.preguntas.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.Properties.Resources.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.respuestas.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.splashscreen.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.tests.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.csproj.GenerateResource.Cache
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\bin\Release\smart_carrer.exe.config
