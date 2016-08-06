@@ -109,9 +109,17 @@ namespace smart_carrer
         {
             if (codigo_respuesta_txt.Text.Trim() != "")
             {
-                string sql = "select descripcion from respuestas where codigo='" + codigo_respuesta_txt.Text.Trim() + "'";
+                string sql = "select descripcion,estado from respuestas where codigo='" + codigo_respuesta_txt.Text.Trim() + "'";
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 descripcion_respuesta_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                if(ds.Tables[0].Rows[0][1].ToString()=="1")
+                {
+                    ck_estado_respuesta.Checked = true;
+                }
+                else
+                {
+                    ck_estado_respuesta.Checked = false;
+                }
             }
         }
 

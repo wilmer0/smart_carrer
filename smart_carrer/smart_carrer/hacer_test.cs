@@ -20,6 +20,7 @@ namespace smart_carrer
         private void hacer_test_Load(object sender, EventArgs e)
         {
             cargar_tests();
+            resultado_txt.ScrollBars = ScrollBars.Vertical;
             
         }
         int left;
@@ -277,11 +278,18 @@ namespace smart_carrer
                 return null;
             }
         }
+        double puntosLocales = 0;
         public Boolean validarRespuestas(Boolean procesar)
         {
             try
             {
-                double puntosLocales=0;
+                resultado_txt.Clear();
+                string cmd = "";
+                string codigo_respuesta_seleccionada = "";
+                int cont=0;
+                string nombreCarrera="";
+                DataSet dx=new DataSet();
+                puntosLocales=0;
                 double sumaPuntosTest = getSumaPuntosTest();
                 //MessageBox.Show("SumaTest: "+sumaPuntosTest.ToString());
                 Puntaje = new List<double>();
@@ -291,54 +299,50 @@ namespace smart_carrer
                     //MessageBox.Show("grupo->"+ pregunta.Tag);
                     Boolean marcada = false;
                     //MessageBox.Show(pregunta.Tag.ToString());
-                    foreach(RadioButton respuesta in pregunta.Controls)
+                    foreach (RadioButton respuesta in pregunta.Controls)
                     {
                         if (respuesta.Checked == true)
                         {
+                            codigo_respuesta_seleccionada = respuesta.Tag.ToString();
                             if (procesar)
                             {
-                                puntosLocales = 0;
+                                //MessageBox.Show("Pregunta;" + pregunta.Tag.ToString() + " respuesta: " + codigo_respuesta_seleccionada.ToString());
+
                                 //create proc getPuntosByPreguntaRespuesta
                                 //@codTest int,@codPregunta int,@codRespuesta int
                                 //puntos-cod_carrera
 
-                                
-                                    //MessageBox.Show("Puntos->" + ds.Tables[0].Rows[0][0].ToString() + "-Carrera->" + ds.Tables[0].Rows[0][1].ToString());
-                                    string cmd = "select codigo from carreras where estado='1'";
-                                    DataSet dx = utilidades.ejecutarcomando(cmd);
-                                    foreach (DataRow row in dx.Tables[0].Rows)
-                                    {
-                                        string sql = "exec getPuntosByPreguntaRespuesta '" + codigo_test_presionado.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "'";
-                                        DataSet ds = utilidades.ejecutarcomando(sql);
-                                        //MessageBox.Show("PuntosLocales "+ds.Tables[0].Rows[0][0].ToString());
-                                        if (ds.Tables[0].Rows[0][0].ToString() != "" && ds.Tables[0].Rows[0][1].ToString() != "")
-                                        {
-                                            if(dx.Tables[0].Rows[0][0].ToString()==ds.Tables[0].Rows[0][1].ToString())
-                                            {
-                                                //tienen el mismo codigo de carrera
-                                                puntosLocales += Convert.ToDouble(ds.Tables[0].Rows[0][0].ToString());
-                                            }
-                                        }
-                                    }
-                                    string nombreCarrera=getNombreCarreraById(dx.Tables[0].Rows[0][0].ToString());
-                                    Puntaje.Add(puntosLocales);
-                                    MessageBox.Show("Tienes un "+Math.Round(((puntosLocales/sumaPuntosTest)*100),2)+"% positivo de "+nombreCarrera);
-                                
+                                //crear un ciclo anterior que me traiga todas las carreras del test y que hag ala comparacion
+                                cmd = "exec getPuntosByPreguntaRespuesta '" + codigo_test_presionado.ToString() + "','" + pregunta.Tag.ToString() + "','" + codigo_respuesta_seleccionada.ToString() + "'";
+                                dx = utilidades.ejecutarcomando(cmd);
+                                puntosLocales = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                                Puntaje.Add(puntosLocales);
+                                nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
+                                resultado_txt.Text += " Carrera:" + nombreCarrera + "- respuesta:"+codigo_respuesta_seleccionada.ToString()+"-puntos:"+puntosLocales.ToString();
+                                resultado_txt.Text += Environment.NewLine;
                             }
                             marcada = true;
                         }
+                        //para saber que se estan recorriendo todas las preguntas y respuestass
                         //MessageBox.Show("Pregunta-> " + pregunta.Tag + "- respuesta->" + respuesta.Tag);
+                       
+               
                     }
                     if(marcada)
                     {
                         todasRespuestas = true;
+                        cont++;                        
                     }
                     else
                     {
                         todasRespuestas = false;
+                        resultado_txt.Clear();
+                        cont = 0;
                     }
+
                 }
                 return todasRespuestas;
+               
             }
             catch(Exception ex)
             {
