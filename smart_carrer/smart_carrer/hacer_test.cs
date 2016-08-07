@@ -21,11 +21,11 @@ namespace smart_carrer
         {
             cargar_tests();
             resultado_txt.ScrollBars = ScrollBars.Vertical;
-            
+
         }
         int left;
         int top;
-        Button boton=new Button();
+        Button boton = new Button();
         public void cargar_tests()
         {
             try
@@ -36,21 +36,21 @@ namespace smart_carrer
                 string sql = "select codigo,nombre from test where estado='1'";
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 Button boton;
-               
-                    foreach (DataRow row in ds.Tables[0].Rows)
-                    {
-                        boton = new Button();
-                        boton.Tag = row[0].ToString();
-                        boton.Top = top;
-                        boton.Left = left;
-                        boton.Width = 160;//ancho
-                        boton.Height += 50;//alto
-                        boton.BackColor = Color.White;
-                        boton.Text = row[1].ToString() + "-" + row[0].ToString();
-                        boton.ForeColor = Color.Tomato;
-                        boton.Click += boton_test_click;//para cuando haga click en los botones de productos generados
-                        flowLayoutPanel1.Controls.Add(boton);
-                    }
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    boton = new Button();
+                    boton.Tag = row[0].ToString();
+                    boton.Top = top;
+                    boton.Left = left;
+                    boton.Width = 160;//ancho
+                    boton.Height += 50;//alto
+                    boton.BackColor = Color.White;
+                    boton.Text = row[1].ToString() + "-" + row[0].ToString();
+                    boton.ForeColor = Color.Tomato;
+                    boton.Click += boton_test_click;//para cuando haga click en los botones de productos generados
+                    flowLayoutPanel1.Controls.Add(boton);
+                }
                 left += 100;
             }
             catch (Exception)
@@ -79,22 +79,22 @@ namespace smart_carrer
         public void cargar_preguntas()
         {
             flowLayoutPanel2.Controls.Clear();
-            if(codigo_test_presionado.ToString()!="")
+            if (codigo_test_presionado.ToString() != "")
             {
-                int top_pregunta=50;
+                int top_pregunta = 50;
                 int left_pregunta = 10;
-                
-                int top_respuesta=20;
-                int left_respuesta=10;
-                
+
+                int top_respuesta = 20;
+                int left_respuesta = 10;
+
                 Label label_pregunta;
-                string sql = "select distinct tp.cod_pregunta,pr.descripcion  from test_vs_preguntas tp join test t on t.codigo=tp.cod_test join preguntas pr on pr.codigo=tp.cod_pregunta where tp.cod_test='"+codigo_test_presionado.ToString()+"'";
+                string sql = "select distinct tp.cod_pregunta,pr.descripcion  from test_vs_preguntas tp join test t on t.codigo=tp.cod_test join preguntas pr on pr.codigo=tp.cod_pregunta where tp.cod_test='" + codigo_test_presionado.ToString() + "'";
                 DataSet ds = utilidades.ejecutarcomando(sql);
 
-                
-                foreach(DataRow row1 in ds.Tables[0].Rows)//recorrer las preguntas
+
+                foreach (DataRow row1 in ds.Tables[0].Rows)//recorrer las preguntas
                 {
-                    
+
                     top_respuesta = 20;
                     left_respuesta = 10;
                     label_pregunta = new Label();
@@ -106,7 +106,7 @@ namespace smart_carrer
                     label_pregunta.Width = 800;//ancho
                     label_pregunta.Height += 10;//alto
                     //flowLayoutPanel2.Controls.Add(label_pregunta);
-                    string cmd = "select tp.cod_respuesta,rp.descripcion from test_vs_preguntas tp join respuestas rp on rp.codigo=tp.cod_respuesta where tp.cod_pregunta='"+row1[0].ToString()+"'";
+                    string cmd = "select tp.cod_respuesta,rp.descripcion from test_vs_preguntas tp join respuestas rp on rp.codigo=tp.cod_respuesta where tp.cod_pregunta='" + row1[0].ToString() + "'";
                     DataSet dx = utilidades.ejecutarcomando(cmd);
                     CheckBox ck_respuesta;
                     RadioButton radio_respuesta;
@@ -115,12 +115,12 @@ namespace smart_carrer
                     grupo.Click += groupBoxClick;
                     flowLayoutPanel2.Controls.Add(grupo);
                     grupo.Width = 800;//ancho
-                    
+
                     foreach (DataRow row2 in dx.Tables[0].Rows)//recorrer las respuestas
                     {
-                        
+
                         radio_respuesta = new RadioButton();
-                        
+
                         //radiobutton
                         radio_respuesta.ForeColor = Color.Tomato;
                         radio_respuesta.Text = row2[1].ToString();
@@ -128,19 +128,19 @@ namespace smart_carrer
                         radio_respuesta.Top = top_respuesta;
                         radio_respuesta.Left = left_respuesta;
                         radio_respuesta.Width = 700;//ancho
-                        radio_respuesta.Height +=10;//alto
+                        radio_respuesta.Height += 10;//alto
                         radio_respuesta.Click += radioRespuestaClick;
 
                         grupo.Text = label_pregunta.Text;
                         grupo.Controls.Add(radio_respuesta);
 
-                        radio_respuesta.Location=new Point(10, top_respuesta);
-                      
+                        radio_respuesta.Location = new Point(10, top_respuesta);
+
                         top_respuesta += 40;
                         grupo.Height += 50;
                     }
                     flowLayoutPanel2.Controls.Add(grupo);
-                  
+
                 }
             }
             else
@@ -152,8 +152,8 @@ namespace smart_carrer
         {
             try
             {
-               GroupBox grupo = (GroupBox)sender;
-               //MessageBox.Show("Grupo " + grupo.Tag);
+                GroupBox grupo = (GroupBox)sender;
+                //MessageBox.Show("Grupo " + grupo.Tag);
             }
             catch (Exception)
             {
@@ -168,17 +168,16 @@ namespace smart_carrer
                 RadioButton radio = (RadioButton)sender;
                 //MessageBox.Show(radio.Tag.ToString());
                 codigo_respuesta_seleccionada = radio.Tag.ToString(); //para tener el codigo
-               
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error click radio: "+ex.ToString());
+                MessageBox.Show("Error click radio: " + ex.ToString());
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            bool a=validarRespuestas(false);
+            bool a = validarRespuestas(false);
             if (a)
             {
                 validarRespuestas(true);
@@ -191,20 +190,20 @@ namespace smart_carrer
             }
         }
         List<double> Puntaje;
-               
-                
+
+
         public void llenarGrafico()
         {
-        
+
             try
             {
                 //vectores con los datos para el grafico
                 string sql = "select codigo,nombre from facultades where estado='1'";
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 List<string> facultades;
-                facultades=new List<string>();
-                int cont=0;
-                foreach(DataRow row in ds.Tables[0].Rows)
+                facultades = new List<string>();
+                int cont = 0;
+                foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     facultades.Add(row[1].ToString());
                     cont++;
@@ -221,11 +220,11 @@ namespace smart_carrer
                 int f = 0;
                 double puntaje = 0;
                 Series ser = new Series();
-                for (int c = 1; c <=facultades.Count; c++)
+                for (int c = 1; c <= facultades.Count; c++)
                 {
                     puntaje = 0;
                     //titulos que salen en la derecha
-                    ser = chart1.Series.Add(facultades[f]);
+                    //ser = chart1.Series.Add(facultades[f]);
                     f++;
                     //foreach (DataGridViewRow row in dataGridView1.Rows)
                     //{
@@ -241,12 +240,12 @@ namespace smart_carrer
 
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
 
             }
-           
-        
+
+
         }
         public double getSumaPuntosTest()
         {
@@ -255,26 +254,26 @@ namespace smart_carrer
                 double sumaPuntosTotal = 0;
                 string cmd = "select sum(puntos) from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
                 DataSet dx = utilidades.ejecutarcomando(cmd);
-                sumaPuntosTotal=Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                sumaPuntosTotal = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
                 return sumaPuntosTotal;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error suma puntos test: "+ex.ToString());
+                MessageBox.Show("Error suma puntos test: " + ex.ToString());
                 return 0;
             }
         }
-        public  string getNombreCarreraById(string codigoCarrera)
+        public string getNombreCarreraById(string codigoCarrera)
         {
             try
             {
-                string sql = "select top(1) nombre from carreras where codigo='"+codigoCarrera+"'";
-                DataSet ds=utilidades.ejecutarcomando(sql);
+                string sql = "select top(1) nombre from carreras where codigo='" + codigoCarrera + "'";
+                DataSet ds = utilidades.ejecutarcomando(sql);
                 return ds.Tables[0].Rows[0][0].ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error tomando nombre carrera:"+ ex.ToString());
+                MessageBox.Show("Error tomando nombre carrera:" + ex.ToString());
                 return null;
             }
         }
@@ -286,10 +285,10 @@ namespace smart_carrer
                 resultado_txt.Clear();
                 string cmd = "";
                 string codigo_respuesta_seleccionada = "";
-                int cont=0;
-                string nombreCarrera="";
-                DataSet dx=new DataSet();
-                puntosLocales=0;
+                int cont = 0;
+                string nombreCarrera = "";
+                DataSet dx = new DataSet();
+                puntosLocales = 0;
                 double sumaPuntosTest = getSumaPuntosTest();
                 //MessageBox.Show("SumaTest: "+sumaPuntosTest.ToString());
                 Puntaje = new List<double>();
@@ -313,25 +312,38 @@ namespace smart_carrer
                                 //puntos-cod_carrera
 
                                 //crear un ciclo anterior que me traiga todas las carreras del test y que hag ala comparacion
-                                cmd = "exec getPuntosByPreguntaRespuesta '" + codigo_test_presionado.ToString() + "','" + pregunta.Tag.ToString() + "','" + codigo_respuesta_seleccionada.ToString() + "'";
-                                dx = utilidades.ejecutarcomando(cmd);
-                                puntosLocales = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
-                                Puntaje.Add(puntosLocales);
-                                nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
-                                resultado_txt.Text += " Carrera:" + nombreCarrera + "- respuesta:"+codigo_respuesta_seleccionada.ToString()+"-puntos:"+puntosLocales.ToString();
-                                resultado_txt.Text += Environment.NewLine;
+                                string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
+                                DataSet ds = utilidades.ejecutarcomando(sql);
+                               
+                                    puntosLocales = 0;
+                                    foreach (DataRow row2 in ds.Tables[0].Rows)
+                                    {
+                                        //MessageBox.Show("Codigo carrera "+row2[0].ToString());
+                                        cmd = "exec getPuntosByPreguntaRespuesta '" + codigo_test_presionado.ToString() + "','" + pregunta.Tag.ToString() + "','" + codigo_respuesta_seleccionada.ToString() + "'";
+                                        dx = utilidades.ejecutarcomando(cmd);
+                                        if (row2[0].ToString() == dx.Tables[0].Rows[0][1].ToString())
+                                        {
+                                            puntosLocales += Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                                            //Puntaje.Add(puntosLocales);
+                                            nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
+                                        }
+                                    }
+                                    if (!resultado_txt.Text.Contains(" Carrera:" + nombreCarrera + "- respuesta:" + codigo_respuesta_seleccionada.ToString() + "-puntos:" + puntosLocales.ToString()))
+                                    {
+                                        resultado_txt.Text += " Carrera:" + nombreCarrera + "- respuesta:" + codigo_respuesta_seleccionada.ToString() + "-puntos:" + (puntosLocales).ToString();
+                                        resultado_txt.Text += Environment.NewLine;
+                                    }
+                                
                             }
                             marcada = true;
                         }
                         //para saber que se estan recorriendo todas las preguntas y respuestass
-                        //MessageBox.Show("Pregunta-> " + pregunta.Tag + "- respuesta->" + respuesta.Tag);
-                       
-               
+                        //MessageBox.Show("Pregunta-> " + pregunta.Tag + "- respuesta->" + respuesta.Tag);  
                     }
-                    if(marcada)
+                    if (marcada)
                     {
                         todasRespuestas = true;
-                        cont++;                        
+                        cont++;
                     }
                     else
                     {
@@ -339,22 +351,19 @@ namespace smart_carrer
                         resultado_txt.Clear();
                         cont = 0;
                     }
-
                 }
                 return todasRespuestas;
-               
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
                 MessageBox.Show("Error validar: " + ex.ToString());
                 return false;
             }
         }
-
         private void chart1_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }
