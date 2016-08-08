@@ -434,15 +434,14 @@ namespace smart_carrer
             DataSet ds2=utilidades.ejecutarcomando(sql);
             foreach(DataRow row1 in ds.Tables[0].Rows)
             {
-                puntos =Convert.ToDouble(getPuntosByTestCarrera(codigo_test_presionado.ToString(),row1[0].ToString()));
+                puntos = Convert.ToDouble(getPuntosByTestCarrera(codigo_test_presionado.ToString(), row1[0].ToString()));
                 string sql2 = "select sum(puntos) from test_resultado_vs_respuestas where codigo='" + codigoTestRespuesta.ToString() + "' and cod_test='" + codigo_test_presionado.ToString() + "' and cod_carrera='" + row1[0].ToString() + "'";
                 DataSet dx = utilidades.ejecutarcomando(sql2);
                 if (dx.Tables[0].Rows[0][0].ToString() != "")
                 {
-                  sumaPuntos = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                    sumaPuntos = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
                 }
-
-                resultado_txt.Text += "Carrera: " + getNombreCarreraById(row1[0].ToString()) + ", Porciento: " + ((sumaPuntos/puntos)*100).ToString()+"%";
+                resultado_txt.Text += "Carrera: " + getNombreCarreraById(row1[0].ToString()) + ", Porciento: " +Math.Round(((sumaPuntos / puntos) * 100),2).ToString() + "%";
                 resultado_txt.Text += Environment.NewLine;
             }
         }
