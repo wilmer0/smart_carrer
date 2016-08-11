@@ -333,9 +333,6 @@ namespace smart_carrer
                             if (procesar)
                             {
                                 //MessageBox.Show("Pregunta;" + pregunta.Tag.ToString() + " respuesta: " + codigo_respuesta_seleccionada.ToString());
-
-                              
-
                                 //crear un ciclo anterior que me traiga todas las carreras del test y que hag ala comparacion
                                 string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
                                 DataSet ds = utilidades.ejecutarcomando(sql);
@@ -355,7 +352,6 @@ namespace smart_carrer
                                             //Puntaje.Add(puntosLocales);
                                             nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
                                             codigoCarrera=dx.Tables[0].Rows[0][1].ToString();
-                                           
                                         }
                                     }
                                     if (!resultado_txt.Text.Contains( " Carrera:" + nombreCarrera + "-Pregunta:"+pregunta.Text+"- respuesta:" + respuesta.Tag.ToString() + "-puntos:" + (puntosLocales).ToString()));
@@ -365,10 +361,8 @@ namespace smart_carrer
                                         string cx = "exec insert_test_resultado_respuestas '" + codigo_test_presionado.ToString() + "','" + codigoCarrera.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "','" + puntosLocales.ToString() + "','" + codigoTestRespuesta.ToString() + "'";
                                         utilidades.ejecutarcomando(cx);
                                         resultado_txt.Text += " Carrera:" + nombreCarrera + "-Pregunta:"+pregunta.Text+"- respuesta:" + codigo_respuesta_seleccionada.ToString() + "-puntos:" + (puntosLocales).ToString();
-                                        resultado_txt.Text += Environment.NewLine;
-                                        
+                                        resultado_txt.Text += Environment.NewLine;   
                                     }
-                                
                             }
                             marcada = true;
                         }
@@ -429,6 +423,7 @@ namespace smart_carrer
             double puntos = 0;
             double sumaPuntos = 0;
             resultado_txt.Text += Environment.NewLine;
+            //se selecciona todas las carreras vinculadas al test para poder sacar la sumatoria total que afecta la carrera dentro del test
             string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='"+codigo_test_presionado.ToString()+"'";
             DataSet ds = utilidades.ejecutarcomando(sql);
             DataSet ds2=utilidades.ejecutarcomando(sql);
