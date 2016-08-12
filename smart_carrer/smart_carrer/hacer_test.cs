@@ -316,9 +316,9 @@ namespace smart_carrer
                 string nombreCarrera = "";
                 DataSet dx = new DataSet();
                 puntosLocales = 0;
-                double sumaPuntosTest = getSumaPuntosTest();
+                //double sumaPuntosTest = getSumaPuntosTest();
                 //MessageBox.Show("SumaTest: "+sumaPuntosTest.ToString());
-                Puntaje = new List<double>();
+                //Puntaje = new List<double>();
                 Boolean todasRespuestas = false;//para saber una respuesta de cada pregunta esta marcada
                 foreach (Control pregunta in flowLayoutPanel2.Controls)
                 {
