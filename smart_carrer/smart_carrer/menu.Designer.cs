@@ -45,7 +45,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label2.Location = new System.Drawing.Point(255, 152);
+            this.label2.Location = new System.Drawing.Point(358, 152);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 17);
             this.label2.TabIndex = 14;
@@ -56,7 +56,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Location = new System.Drawing.Point(562, 152);
+            this.label1.Location = new System.Drawing.Point(759, 152);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 15;
@@ -82,16 +82,16 @@
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel3.Location = new System.Drawing.Point(12, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(106, 88);
+            this.panel3.Size = new System.Drawing.Size(137, 137);
             this.panel3.TabIndex = 1;
             // 
             // panel4
             // 
             this.panel4.BackgroundImage = global::smart_carrer.Properties.Resources.elegir_carrera_universitaria;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(12, 241);
+            this.panel4.Location = new System.Drawing.Point(12, 172);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(854, 283);
+            this.panel4.Size = new System.Drawing.Size(854, 352);
             this.panel4.TabIndex = 21;
             // 
             // button2
@@ -111,7 +111,7 @@
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.BackgroundImage = global::smart_carrer.Properties.Resources.opciones1;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(532, 12);
+            this.panel2.Location = new System.Drawing.Point(729, 12);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(137, 137);
             this.panel2.TabIndex = 1;
@@ -122,7 +122,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::smart_carrer.Properties.Resources.icono_servicios1;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(249, 12);
+            this.panel1.Location = new System.Drawing.Point(352, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(137, 137);
             this.panel1.TabIndex = 0;
@@ -134,7 +134,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label3.Location = new System.Drawing.Point(19, 103);
+            this.label3.Location = new System.Drawing.Point(32, 152);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 17);
             this.label3.TabIndex = 22;

@@ -423,6 +423,7 @@ namespace smart_carrer
             DataSet ds2=utilidades.ejecutarcomando(sql);
             foreach(DataRow row1 in ds.Tables[0].Rows)
             {
+                codigoCarrera = row1[0].ToString();
                 puntos = Convert.ToDouble(getPuntosByTestCarrera(codigo_test_presionado.ToString(), row1[0].ToString()));
                 string sql2 = "select sum(puntos) from test_resultado_vs_respuestas where codigo='" + codigoTestRespuesta.ToString() + "' and cod_test='" + codigo_test_presionado.ToString() + "' and cod_carrera='" + row1[0].ToString() + "'";
                 DataSet dx = utilidades.ejecutarcomando(sql2);
@@ -430,8 +431,25 @@ namespace smart_carrer
                 {
                     sumaPuntos = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
                 }
-                resultado_txt.Text += "Carrera: " + getNombreCarreraById(row1[0].ToString()) + ", Porciento: " +Math.Round(((sumaPuntos / puntos) * 100),2).ToString() + "%";
+                puntos=Math.Round(((sumaPuntos / puntos) * 100),2);
+                resultado_txt.Text += "Carrera: " + getNombreCarreraById(row1[0].ToString()) + ", Porciento: " +puntos.ToString() + "%";
                 resultado_txt.Text += Environment.NewLine;
+                string cmd = "insert into test_resultado_final(codigo,fecha,cod_Carrera,puntuacion) values('"+codigoTestRespuesta.ToString()+"',GETDATE(),'"+codigoCarrera.ToString()+"','"+puntos.ToString()+"')";
+                utilidades.ejecutarcomando(cmd);
+            }
+
+
+            //parte final para decirle que carrera escoger siempre y cuando la puntuacion haya sido la mas alta
+            sql="select trf.codigo,c.nombre,trf.fecha,trf.cod_carrera,trf.puntuacion  from test_resultado_final trf join carreras c on trf.cod_carrera=c.codigo where trf.codigo='"+codigoTestRespuesta.ToString()+"' and trf.puntuacion=(select max(t.puntuacion) from test_resultado_final t where t.codigo='"+codigoTestRespuesta.ToString()+"')";
+            ds = utilidades.ejecutarcomando(sql);
+            resultado_txt.Text +=Environment.NewLine; 
+            resultado_txt.Text += Environment.NewLine;
+            resultado_txt.Text += "Carreras Recomendadas:";
+            resultado_txt.Text += Environment.NewLine; 
+            foreach(DataRow row in ds.Tables[0].Rows)
+            {
+                resultado_txt.Text += "Carrera: "+row[1].ToString()+"- Puntos: "+row[4].ToString();
+                resultado_txt.Text += Environment.NewLine; 
             }
         }
     }
