@@ -35,8 +35,8 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.test_nombre_label_txt = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.resultado_txt = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -97,23 +97,12 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackgroundImage = global::smart_carrer.Properties.Resources.save_file_disk_open_searsh_loading_clipboard_1513;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(1175, 586);
+            this.button1.Location = new System.Drawing.Point(1175, 522);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 58);
             this.button1.TabIndex = 77;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label4.Location = new System.Drawing.Point(1154, 425);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 25);
-            this.label4.TabIndex = 98;
-            this.label4.Text = "Facultades";
             // 
             // resultado_txt
             // 
@@ -124,14 +113,26 @@
             this.resultado_txt.Size = new System.Drawing.Size(956, 216);
             this.resultado_txt.TabIndex = 99;
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.BackgroundImage = global::smart_carrer.Properties.Resources.cancel1;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Location = new System.Drawing.Point(1175, 586);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 58);
+            this.button2.TabIndex = 100;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // hacer_test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1262, 656);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.resultado_txt);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.test_nombre_label_txt);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.label2);
@@ -158,7 +159,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label test_nombre_label_txt;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox resultado_txt;
+        private System.Windows.Forms.Button button2;
     }
 }

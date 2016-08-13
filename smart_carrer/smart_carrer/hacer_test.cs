@@ -185,11 +185,12 @@ namespace smart_carrer
                     validarRespuestas(true);
                     llenarGrafico();
                     calcularResultado();
-                    MessageBox.Show("Proceso finalizado");
+                    MessageBox.Show("Proceso finalizado", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una respuesta por cada pregunta");
+                    MessageBox.Show("Debes seleccionar una respuesta por cada preguna", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -482,6 +483,15 @@ namespace smart_carrer
             catch (Exception ex)
             {
                 MessageBox.Show("Error procesando: " + ex.ToString());
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
             }
         }
     }
