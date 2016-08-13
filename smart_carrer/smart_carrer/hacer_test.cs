@@ -485,7 +485,6 @@ namespace smart_carrer
                 MessageBox.Show("Error procesando: " + ex.ToString());
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

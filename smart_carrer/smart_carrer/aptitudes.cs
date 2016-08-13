@@ -278,5 +278,10 @@ namespace smart_carrer
                 MessageBox.Show("Error: "+ex.ToString());
             }
         }
+
+        private void aptitudes_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
