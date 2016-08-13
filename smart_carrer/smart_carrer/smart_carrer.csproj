@@ -51,6 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aptitudes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aptitudes.Designer.cs">
+      <DependentUpon>aptitudes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="busqueda_aptitudes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="busqueda_aptitudes.Designer.cs">
+      <DependentUpon>busqueda_aptitudes.cs</DependentUpon>
+    </Compile>
     <Compile Include="busqueda_carrera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,12 +104,6 @@
     </Compile>
     <Compile Include="facultades.Designer.cs">
       <DependentUpon>facultades.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="hacer_test.cs">
       <SubType>Form</SubType>
@@ -144,6 +150,12 @@
       <DependentUpon>tests.cs</DependentUpon>
     </Compile>
     <Compile Include="utilidades.cs" />
+    <EmbeddedResource Include="aptitudes.resx">
+      <DependentUpon>aptitudes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="busqueda_aptitudes.resx">
+      <DependentUpon>busqueda_aptitudes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="busqueda_carrera.resx">
       <DependentUpon>busqueda_carrera.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,9 +176,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="facultades.resx">
       <DependentUpon>facultades.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="hacer_test.resx">
       <DependentUpon>hacer_test.cs</DependentUpon>
@@ -251,6 +260,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="faq.ico" />
+    <None Include="Resources\benefits.gif" />
+    <None Include="Resources\logo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

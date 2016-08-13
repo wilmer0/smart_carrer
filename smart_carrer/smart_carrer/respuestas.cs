@@ -18,7 +18,7 @@ namespace smart_carrer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Desea salir?", "Saliendo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 this.Close();
@@ -27,68 +27,12 @@ namespace smart_carrer
 
         private void button6_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Desea eliminar?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                try
-                {
-                    if (dataGridView1.Rows.Count > 0)
-                    {
-                        dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
-                    }
-                    else
-                    {
-                        dr = MessageBox.Show("No hay elementos para eliminar", "Eliminando", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error eliminando la fila seleccionada");
-                }
-            }
+           
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            int cont = 0;
-            try
-            {
-                if (codigo_pregunta_txt.Text.Trim() != "")
-                {
-                    if (codigo_respuesta_pregunta_txt.Text.Trim() != "")
-                    {
-
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
-                        {
-                            if (row.Cells[0].Value.ToString() == codigo_pregunta_txt.Text.Trim() && row.Cells[2].Value.ToString()==codigo_respuesta_pregunta_txt.Text.Trim())
-                            {
-                                cont++;
-                            }
-                        }
-                        if (cont == 0)
-                        {
-                            dataGridView1.Rows.Add(codigo_pregunta_txt.Text.Trim(), descripcion_pregunta_txt.Text.Trim(), codigo_respuesta_pregunta_txt.Text.Trim(), descripcion_respuesta_pregunta_txt.Text.Trim());
-                        }
-                        else
-                        {
-                            MessageBox.Show("La pregunta con esa respuesta ya se encuentra seleccionada");
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falta la respuesta");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Falta la pregunta");
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error agregando la respuesta a la pregunta");
-            }
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -111,7 +55,7 @@ namespace smart_carrer
             {
                 string sql = "select descripcion,estado from respuestas where codigo='" + codigo_respuesta_txt.Text.Trim() + "'";
                 DataSet ds = utilidades.ejecutarcomando(sql);
-                descripcion_respuesta_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                descripcion_respuesta.Text = ds.Tables[0].Rows[0][0].ToString();
                 if(ds.Tables[0].Rows[0][1].ToString()=="1")
                 {
                     ck_estado_respuesta.Checked = true;
@@ -130,11 +74,11 @@ namespace smart_carrer
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 
                 int estado = 0;
-                if(descripcion_respuesta_txt.Text.Trim()!="")
+                if(descripcion_respuesta.Text.Trim()!="")
                 {
                     if(ck_estado_respuesta.Checked==true)
                     {
@@ -151,15 +95,15 @@ namespace smart_carrer
                   create proc insert_respuesta
                   @descripcion varchar(max),@estado int,@codigo int
                  */
-                        string sql = "exec insert_respuesta '"+descripcion_respuesta_txt.Text.Trim()+"','"+estado.ToString()+"','0'";
+                        string sql = "exec insert_respuesta '"+descripcion_respuesta.Text.Trim()+"','"+estado.ToString()+"','0'";
                         DataSet ds = utilidades.ejecutarcomando(sql);
                         if(ds.Tables[0].Rows.Count>0)
                         {
-                            MessageBox.Show("Se agrego");
+                            MessageBox.Show("Se agrego la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                         }
                         else
                         {
-                            MessageBox.Show("No se agrego");
+                            MessageBox.Show("No se agrego la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                         }
                     }
                     else
@@ -170,31 +114,36 @@ namespace smart_carrer
                   @descripcion varchar(max),@estado int,@codigo int
                  */
 
-                        string sql = "exec insert_respuesta '" + descripcion_respuesta_txt.Text.Trim() + "','" + estado.ToString() + "','"+codigo_respuesta_txt.Text.Trim()+"'";
+                        string sql = "exec insert_respuesta '" + descripcion_respuesta.Text.Trim() + "','" + estado.ToString() + "','"+codigo_respuesta_txt.Text.Trim()+"'";
                         DataSet ds = utilidades.ejecutarcomando(sql);
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            MessageBox.Show("Se actualizo");
+                            MessageBox.Show("Se actualizo la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                         }
                         else
                         {
-                            MessageBox.Show("No se actualizo");
+                            MessageBox.Show("No se actualizo la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Falta la respuesta");
+                    MessageBox.Show("Falta la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                 }
-                
-            //}
-            //catch(Exception)
-            //{
-            //    MessageBox.Show("Error");
-            //}
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error :"+ex.ToString());
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

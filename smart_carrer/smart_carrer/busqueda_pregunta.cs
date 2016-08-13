@@ -52,7 +52,7 @@ namespace smart_carrer
                 dataGridView1.Rows.Clear();
                 if (mantenimiento == true)
                 {
-                    string sql = "select codigo,descripcion,estado from preguntas";
+                    string sql = "select codigo,descripcion,estado from preguntas where codigo>0";
                     if (descripcion_txt.Text.Trim() != "")
                     {
                         sql += " and descripcion like '%" + descripcion_txt.Text.Trim() + "%'";
@@ -87,6 +87,15 @@ namespace smart_carrer
         private void descripcion_txt_KeyUp(object sender, KeyEventArgs e)
         {
             cargar_datos();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

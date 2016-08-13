@@ -45,7 +45,7 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackgroundImage = global::smart_carrer.Properties.Resources.cancel1;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(12, 286);
+            this.button2.Location = new System.Drawing.Point(12, 323);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 58);
             this.button2.TabIndex = 24;
@@ -57,7 +57,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackgroundImage = global::smart_carrer.Properties.Resources.save_file_disk_open_searsh_loading_clipboard_1513;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(481, 286);
+            this.button1.Location = new System.Drawing.Point(481, 323);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 58);
             this.button1.TabIndex = 23;
@@ -79,7 +79,7 @@
             this.nombre_grid,
             this.estado_grid});
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 31);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 68);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -113,7 +113,7 @@
             // 
             // descripcion_txt
             // 
-            this.descripcion_txt.Location = new System.Drawing.Point(91, 10);
+            this.descripcion_txt.Location = new System.Drawing.Point(91, 38);
             this.descripcion_txt.Name = "descripcion_txt";
             this.descripcion_txt.Size = new System.Drawing.Size(341, 20);
             this.descripcion_txt.TabIndex = 77;
@@ -124,7 +124,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label1.Location = new System.Drawing.Point(12, 11);
+            this.label1.Location = new System.Drawing.Point(12, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 17);
             this.label1.TabIndex = 76;
@@ -135,7 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(576, 352);
+            this.ClientSize = new System.Drawing.Size(576, 389);
             this.Controls.Add(this.descripcion_txt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);

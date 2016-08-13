@@ -22,6 +22,7 @@ namespace smart_carrer
             cargar_tests();
             resultado_txt.ScrollBars = ScrollBars.Vertical;
 
+
         }
         int left;
         int top;
@@ -94,7 +95,6 @@ namespace smart_carrer
 
                 foreach (DataRow row1 in ds.Tables[0].Rows)//recorrer las preguntas
                 {
-
                     top_respuesta = 20;
                     left_respuesta = 10;
                     label_pregunta = new Label();
@@ -140,12 +140,11 @@ namespace smart_carrer
                         grupo.Height += 50;
                     }
                     flowLayoutPanel2.Controls.Add(grupo);
-
                 }
             }
             else
             {
-                MessageBox.Show("Debes seleccionar un test");
+                MessageBox.Show("Debes seleccionar un test", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         void groupBoxClick(object sender, EventArgs e)
@@ -157,7 +156,7 @@ namespace smart_carrer
             }
             catch (Exception)
             {
-                MessageBox.Show("Error en el evento click boton test");
+                MessageBox.Show("Error en el evento click boton test","",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         string codigo_respuesta_seleccionada = "";
@@ -191,8 +190,6 @@ namespace smart_carrer
             }
         }
         List<double> Puntaje;
-
-
         public void llenarGrafico()
         {
 
@@ -245,8 +242,6 @@ namespace smart_carrer
             {
 
             }
-
-
         }
         public double getSumaPuntosTest()
         {
@@ -324,7 +319,7 @@ namespace smart_carrer
                 {
                     //MessageBox.Show("grupo->"+ pregunta.Tag);
                     Boolean marcada = false;
-                    //MessageBox.Show(pregunta.Tag.ToString());
+                    //MessageBox.Show(pregunta.Tag.ToString());                    
                     foreach (RadioButton respuesta in pregunta.Controls)
                     {
                         if (respuesta.Checked == true)
@@ -336,7 +331,6 @@ namespace smart_carrer
                                 //crear un ciclo anterior que me traiga todas las carreras del test y que hag ala comparacion
                                 string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
                                 DataSet ds = utilidades.ejecutarcomando(sql);
-                               
                                     puntosLocales = 0;
                                     foreach (DataRow row2 in ds.Tables[0].Rows)
                                     {
@@ -353,6 +347,7 @@ namespace smart_carrer
                                             nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
                                             codigoCarrera=dx.Tables[0].Rows[0][1].ToString();
                                         }
+
                                     }
                                     if (!resultado_txt.Text.Contains( " Carrera:" + nombreCarrera + "-Pregunta:"+pregunta.Text+"- respuesta:" + respuesta.Tag.ToString() + "-puntos:" + (puntosLocales).ToString()));
                                     {
@@ -395,7 +390,6 @@ namespace smart_carrer
         }
         private void chart1_Click(object sender, EventArgs e)
         {
-
         }
         public string getPuntosByTestCarrera(string cod_test,string codigo_carrera)
         {
