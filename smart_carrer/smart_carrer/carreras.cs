@@ -18,86 +18,82 @@ namespace smart_carrer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("Desea guardar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                int estado = 0;
-                if (nombre_txt.Text.Trim() != "")
+                try
                 {
-                    if (codigo_facultad_txt.Text.Trim() != "")
+                    int estado = 0;
+                    if (ck_estado.Checked == true)
                     {
-                        if (codigo_txt.Text.Trim() == "")
+                        estado = 1;
+                    }
+                    else
+                    {
+                        estado = 0;
+                    }
+                    if (nombre_txt.Text.Trim() != "")
+                    {
+                        if (codigo_facultad_txt.Text.Trim() != "")
                         {
-                            //guardar
-                            /*
-                            create proc insert_carrera
-                            @nombre varchar(max),@descripcion varchar(max),@cod_facultad int,@estado int,@codigo int
+                            if (codigo_txt.Text.Trim() == "")
+                            {
+                                //guardar
+                                /*
+                                create proc insert_carrera
+                                @nombre varchar(max),@descripcion varchar(max),@cod_facultad int,@estado int,@codigo int
 
-                            */
-                            if (ck_estado.Checked == true)
-                            {
-                                estado = 1;
+                                */
+                                string sql = "exec insert_carrera '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','" + codigo_facultad_txt.Text.Trim() + "','" + estado.ToString() + "','0'";
+                                DataSet ds = utilidades.ejecutarcomando(sql);
+                                if (ds.Tables[0].Rows.Count > 0)
+                                {
+                                    MessageBox.Show("Se agrego la carrera","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                    codigo_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se agrego la carrera", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                             else
                             {
-                                estado = 0;
-                            }
-                            string sql = "exec insert_carrera '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','"+codigo_facultad_txt.Text.Trim() +"','"+ estado.ToString() + "','0'";
-                            DataSet ds = utilidades.ejecutarcomando(sql);
-                            if (ds.Tables[0].Rows.Count > 0)
-                            {
-                                MessageBox.Show("Se agrego!");
-                                codigo_txt.Text = ds.Tables[0].Rows[0][0].ToString();
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se agrego!");
+                                //actualizar
+                                /*
+                                 create proc insert_carrera
+                                    @nombre varchar(max),@descripcion varchar(max),@cod_facultad int,@estado int,@codigo int
+
+                                */
+
+                                string sql = "exec insert_carrera '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','" + codigo_facultad_txt.Text.Trim() + "','" + estado.ToString() + "','"+codigo_txt.Text.Trim()+"'";
+                                DataSet ds = utilidades.ejecutarcomando(sql);
+                                if (ds.Tables[0].Rows.Count > 0)
+                                {
+                                    MessageBox.Show("Se actualizo la carrera", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                 
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se actualizo la carrera", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                         else
                         {
-                            //actualizar
-                            /*
-                             create proc insert_carrera
-                                @nombre varchar(max),@descripcion varchar(max),@cod_facultad int,@estado int,@codigo int
-
-                            */
-                            if (ck_estado.Checked == true)
-                            {
-                                estado = 1;
-                            }
-                            else
-                            {
-                                estado = 0;
-                            }
-                            string sql = "exec insert_carrera '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','" + codigo_facultad_txt.Text.Trim() + "','" + estado.ToString() + "','" + codigo_txt.Text.Trim() + "'";
-                            DataSet ds = utilidades.ejecutarcomando(sql);
-                            if (ds.Tables[0].Rows.Count > 0)
-                            {
-                                MessageBox.Show("Se actualizo!");
-                                codigo_txt.Text = ds.Tables[0].Rows[0][0].ToString();
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se actualizo!");
-                            }
+                            MessageBox.Show("Falta la facultad");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Falta la facultad");
+                        MessageBox.Show("Falta el nombre");
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    MessageBox.Show("Falta el nombre");
+                    MessageBox.Show("Error agregando o ya existe");
                 }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Error agregando o ya existe");
-            }
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             busqueda_facultad bf = new busqueda_facultad();
@@ -153,14 +149,14 @@ namespace smart_carrer
         {
             if (codigo_txt.Text.Trim() != "")
             {
-                string sql = "select codigo,nombre,cod_facultad,descripcion,estado from carreras";
+                string sql = "select nombre,cod_facultad,descripcion,estado from carreras";
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 if (ds.Tables[0].Rows[0][0].ToString() != "")
                 {
-                    nombre_txt.Text = ds.Tables[0].Rows[0][1].ToString();
-                    codigo_facultad_txt.Text = ds.Tables[0].Rows[0][2].ToString();
-                    descripcion_txt.Text = ds.Tables[0].Rows[0][3].ToString();
-                    if (ds.Tables[0].Rows[0][4].ToString() == "1")
+                    nombre_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                    codigo_facultad_txt.Text = ds.Tables[0].Rows[0][1].ToString();
+                    descripcion_txt.Text = ds.Tables[0].Rows[0][2].ToString();
+                    if (ds.Tables[0].Rows[0][3].ToString() == "1")
                     {
                         ck_estado.Checked = true;
                     }

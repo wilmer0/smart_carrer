@@ -18,10 +18,13 @@ namespace smart_carrer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("Desea guardar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                int estado = 0;
-               
+                try
+                {
+                    int estado = 0;
+
                     if (descripcion_txt.Text.Trim() != "")
                     {
                         if (codigo_txt.Text.Trim() == "")
@@ -39,7 +42,7 @@ namespace smart_carrer
                             {
                                 estado = 0;
                             }
-                            string sql = "exec insert_pregunta '" + descripcion_txt.Text.Trim() +"','" + estado.ToString() + "','0'";
+                            string sql = "exec insert_pregunta '" + descripcion_txt.Text.Trim() + "','" + estado.ToString() + "','0'";
                             DataSet ds = utilidades.ejecutarcomando(sql);
                             if (ds.Tables[0].Rows.Count > 0)
                             {
@@ -83,14 +86,14 @@ namespace smart_carrer
                     {
                         MessageBox.Show("Falta establecer la pregunta");
                     }
-               
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Error agregando o ya existe la pregunta");
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error agregando o ya existe la pregunta");
+                }
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             busqueda_pregunta bp = new busqueda_pregunta();
@@ -107,9 +110,17 @@ namespace smart_carrer
         {
             if(codigo_txt.Text.Trim()!="")
             {
-                string sql="select descripcion from preguntas where codigo='"+codigo_txt.Text.Trim()+"'";
+                string sql="select descripcion,estado from preguntas where codigo='"+codigo_txt.Text.Trim()+"'";
                 DataSet ds=utilidades.ejecutarcomando(sql);
                 descripcion_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                if(ds.Tables[0].Rows[0][1].ToString()=="1")
+                {
+                    ck_estado.Checked = true;
+                }
+                else
+                {
+                    ck_estado.Checked = false;
+                }
             }
         }
 

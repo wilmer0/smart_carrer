@@ -18,81 +18,84 @@ namespace smart_carrer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("Desea guardar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                int estado = 0;
-                if (nombre_txt.Text.Trim() != "")
+                try
                 {
-                    if (codigo_txt.Text.Trim() == "")
+                    int estado = 0;
+                    if (nombre_txt.Text.Trim() != "")
                     {
-                        //guardar
-                        /*
-                         create proc insert_test
-                         @nombre varchar(max),@descripcion varchar(max),@estado int,@codigo int
-                        */
-                        if (ck_estado.Checked == true)
+                        if (codigo_txt.Text.Trim() == "")
                         {
-                            estado = 1;
+                            //guardar
+                            /*
+                             create proc insert_test
+                             @nombre varchar(max),@descripcion varchar(max),@estado int,@codigo int
+                            */
+                            if (ck_estado.Checked == true)
+                            {
+                                estado = 1;
+                            }
+                            else
+                            {
+                                estado = 0;
+                            }
+                            string sql = "exec insert_test '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','" + estado.ToString() + "','0'";
+                            DataSet ds = utilidades.ejecutarcomando(sql);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                codigo_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                                actualiza_preguntas();
+                                MessageBox.Show("Se agrego!");
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se agrego!");
+                            }
                         }
                         else
                         {
-                            estado = 0;
-                        }
-                        string sql = "exec insert_test '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','" + estado.ToString() + "','0'";
-                        DataSet ds = utilidades.ejecutarcomando(sql);
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            codigo_txt.Text = ds.Tables[0].Rows[0][0].ToString();
-                            actualiza_preguntas();
-                            MessageBox.Show("Se agrego!");
-                            
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se agrego!");
+                            //actualizar
+                            /*
+                             create proc insert_test
+                             @nombre varchar(max),@descripcion varchar(max),@estado int,@codigo int
+                            */
+                            if (ck_estado.Checked == true)
+                            {
+                                estado = 1;
+                            }
+                            else
+                            {
+                                estado = 0;
+                            }
+                            string sql = "exec insert_test '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','" + estado.ToString() + "','" + codigo_txt.Text.Trim() + "'";
+                            DataSet ds = utilidades.ejecutarcomando(sql);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+
+                                codigo_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                                actualiza_preguntas();
+                                MessageBox.Show("Se actualizo!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se actualizo!");
+                            }
                         }
                     }
                     else
                     {
-                        //actualizar
-                        /*
-                         create proc insert_test
-                         @nombre varchar(max),@descripcion varchar(max),@estado int,@codigo int
-                        */
-                        if (ck_estado.Checked == true)
-                        {
-                            estado = 1;
-                        }
-                        else
-                        {
-                            estado = 0;
-                        }
-                        string sql = "exec insert_test '" + nombre_txt.Text.Trim() + "','" + descripcion_txt.Text.Trim() + "','" + estado.ToString() + "','" + codigo_txt.Text.Trim() + "'";
-                        DataSet ds = utilidades.ejecutarcomando(sql);
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-
-                            codigo_txt.Text = ds.Tables[0].Rows[0][0].ToString();
-                            actualiza_preguntas();
-                            MessageBox.Show("Se actualizo!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se actualizo!");
-                        }
+                        MessageBox.Show("Falta el nombre");
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    MessageBox.Show("Falta el nombre");
+                    MessageBox.Show("Error agregando o ya existe");
                 }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Error agregando o ya existe");
-            }
         }
-
         private void label4_Click(object sender, EventArgs e)
         {
             codigo_txt.Clear();

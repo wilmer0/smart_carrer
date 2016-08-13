@@ -89,9 +89,9 @@
             // 
             this.panel4.BackgroundImage = global::smart_carrer.Properties.Resources.elegir_carrera_universitaria;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(12, 172);
+            this.panel4.Location = new System.Drawing.Point(12, 297);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(854, 352);
+            this.panel4.Size = new System.Drawing.Size(854, 227);
             this.panel4.TabIndex = 21;
             // 
             // button2
