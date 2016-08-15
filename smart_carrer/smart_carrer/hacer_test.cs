@@ -21,8 +21,6 @@ namespace smart_carrer
         {
             cargar_tests();
             resultado_txt.ScrollBars = ScrollBars.Vertical;
-
-
         }
         int left;
         int top;
@@ -352,7 +350,6 @@ namespace smart_carrer
                                         nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
                                         codigoCarrera = dx.Tables[0].Rows[0][1].ToString();
                                     }
-
                                 }
                                 if (!resultado_txt.Text.Contains(" Carrera:" + nombreCarrera + "-Pregunta:" + pregunta.Text + "- respuesta:" + respuesta.Tag.ToString() + "-puntos:" + (puntosLocales).ToString())) ;
                                 {
@@ -444,8 +441,6 @@ namespace smart_carrer
                     string cmd = "insert into test_resultado_final(codigo,fecha,cod_Carrera,puntuacion) values('" + codigoTestRespuesta.ToString() + "',GETDATE(),'" + codigoCarrera.ToString() + "','" + puntos.ToString() + "')";
                     utilidades.ejecutarcomando(cmd);
                 }
-
-
                 //parte final para decirle que carrera escoger siempre y cuando la puntuacion haya sido la mas alta
                 sql = "select trf.codigo,c.nombre,trf.fecha,trf.cod_carrera,trf.puntuacion  from test_resultado_final trf join carreras c on trf.cod_carrera=c.codigo where trf.codigo='" + codigoTestRespuesta.ToString() + "' and trf.puntuacion=(select max(t.puntuacion) from test_resultado_final t where t.codigo='" + codigoTestRespuesta.ToString() + "')";
                 ds = utilidades.ejecutarcomando(sql);
@@ -458,13 +453,11 @@ namespace smart_carrer
                     resultado_txt.Text += "Carrera: " + row[1].ToString() + "- Puntos: " + row[4].ToString();
                     resultado_txt.Text += Environment.NewLine;
                 }
-
                 resultado_txt.Text += Environment.NewLine;
                 resultado_txt.Text += Environment.NewLine;
                 resultado_txt.Text += "Algunas aptitudes que debes poseer son:";
                 resultado_txt.Text += Environment.NewLine;
                 resultado_txt.Text += Environment.NewLine;
-
                 //ahora darle algunas recomendaciones que deberia tener algunas cualidades que le pueden se mucha ayuda para determinar la carrera
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
