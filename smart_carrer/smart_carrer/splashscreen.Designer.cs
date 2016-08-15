@@ -39,9 +39,9 @@
             // 
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Image = global::smart_carrer.Properties.Resources._3499424w91v795brv;
-            this.pictureBox3.Location = new System.Drawing.Point(-113, -120);
+            this.pictureBox3.Location = new System.Drawing.Point(-115, -112);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(800, 499);
+            this.pictureBox3.Size = new System.Drawing.Size(876, 499);
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
@@ -68,7 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 379);
+            this.ClientSize = new System.Drawing.Size(571, 379);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

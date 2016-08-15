@@ -27,14 +27,12 @@ namespace smart_carrer
                 this.Hide();
                 menu me = new menu();
                 me.ShowDialog();
-               
+                
             }
             else
             {
                 cont++;
             }
-            
-        
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)

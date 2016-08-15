@@ -32,7 +32,6 @@ D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Relea
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_tests.resources
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.carreras.resources
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.facultades.resources
-D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.Form1.resources
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.hacer_test.resources
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.mantenimientos.resources
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.menu.resources
@@ -43,3 +42,5 @@ D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Relea
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.tests.resources
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.csproj.GenerateResource.Cache
 D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\bin\Release\smart_carrer.exe.config
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.aptitudes.resources
+D:\wilmer\developer\github\data\smart_carrer\smart_carrer\smart_carrer\obj\Release\smart_carrer.busqueda_aptitudes.resources

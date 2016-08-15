@@ -9,26 +9,17 @@ using System.Windows.Forms;
 
 namespace smart_carrer
 {
-    public partial class busqueda_tests : Form
+    public partial class busqueda_aptitudes : Form
     {
-        public busqueda_tests()
+        public busqueda_aptitudes()
         {
             InitializeComponent();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                this.Close();
-            }
         }
 
         public delegate void pasar(string dato);
         public event pasar pasado;
         public bool mantenimiento = false;
-        private void busqueda_tests_Load(object sender, EventArgs e)
+        private void busqueda_aptitudes_Load(object sender, EventArgs e)
         {
             cargar_datos();
         }
@@ -37,8 +28,8 @@ namespace smart_carrer
             dataGridView1.Rows.Clear();
             if (mantenimiento == true)
             {
-                string sql = "select codigo,nombre,estado from test where codigo>0";
-                if (descripcion_txt.Text != "")
+                string sql = "select codigo,nombre,estado from aptitudes where codigo>0";
+                if (descripcion_txt.Text.Trim() != "")
                 {
                     sql += " and nombre like '%" + descripcion_txt.Text.Trim() + "%'";
                 }
@@ -51,8 +42,8 @@ namespace smart_carrer
             if (mantenimiento == false)
             {
 
-                string sql = "select codigo,nombre,estado from test where estado='1'";
-                if (descripcion_txt.Text != "")
+                string sql = "select codigo,nombre,estado from aptitudes where estado='1'";
+                if (descripcion_txt.Text.Trim() != "")
                 {
                     sql += " and nombre like '%" + descripcion_txt.Text.Trim() + "%'";
                 }
@@ -63,7 +54,6 @@ namespace smart_carrer
                 }
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -86,10 +76,18 @@ namespace smart_carrer
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
         private void descripcion_txt_KeyUp(object sender, KeyEventArgs e)
         {
             cargar_datos();
         }
-
     }
 }

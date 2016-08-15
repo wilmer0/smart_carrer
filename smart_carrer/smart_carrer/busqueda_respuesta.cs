@@ -27,7 +27,7 @@ namespace smart_carrer
             dataGridView1.Rows.Clear();
             if (mantenimiento == true)
             {
-                string sql = "select codigo,descripcion,estado from respuestas";
+                string sql = "select codigo,descripcion,estado from respuestas where codigo>0";
                 if(descripcion_txt.Text.Trim()!="")
                 {
                     sql += " and descripcion like '%"+descripcion_txt.Text.Trim()+"%'";
@@ -56,7 +56,7 @@ namespace smart_carrer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Desea salir?", "Saliendo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 this.Close();

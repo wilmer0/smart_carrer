@@ -54,5 +54,11 @@ namespace smart_carrer
             respuestas re = new respuestas();
             re.ShowDialog();
         }
+
+        private void panel6_Click(object sender, EventArgs e)
+        {
+            aptitudes ap = new aptitudes();
+            ap.ShowDialog();
+        }
     }
 }

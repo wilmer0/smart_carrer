@@ -59,7 +59,11 @@ namespace smart_carrer
             dataGridView1.Rows.Clear();
             if (mantenimiento == true)
             {
-                string sql = "select codigo,nombre,estado from carreras";
+                string sql = "select codigo,nombre,estado from carreras where codigo>0";
+                if(descripcion_txt.Text!="")
+                {
+                    sql += " and nombre like '%" + descripcion_txt.Text.Trim() + "%'";
+                }
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
@@ -70,12 +74,21 @@ namespace smart_carrer
             {
 
                 string sql = "select codigo,nombre,estado from carreras where estado='1'";
+                if (descripcion_txt.Text != "")
+                {
+                    sql += " and nombre like '%" + descripcion_txt.Text.Trim() + "%'";
+                }
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     dataGridView1.Rows.Add(row[0].ToString(), row[1].ToString(), row[2].ToString());
                 }
             }
+        }
+
+        private void descripcion_txt_KeyUp(object sender, KeyEventArgs e)
+        {
+            cargar_datos();
         }
     }
 }

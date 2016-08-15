@@ -28,7 +28,11 @@ namespace smart_carrer
             dataGridView1.Rows.Clear();
             if (mantenimiento == true)
             {
-                string sql = "select codigo,nombre,estado from facultades";
+                string sql = "select codigo,nombre,estado from facultades where codigo>0";
+                if (descripcion_txt.Text != "")
+                {
+                    sql += " and nombre like '%" + descripcion_txt.Text.Trim() + "%'";
+                }
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
@@ -39,6 +43,10 @@ namespace smart_carrer
             {
 
                 string sql = "select codigo,nombre,estado from facultades where estado='1'";
+                if (descripcion_txt.Text != "")
+                {
+                    sql += " and nombre like '%" + descripcion_txt.Text.Trim() + "%'";
+                }
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
@@ -71,11 +79,16 @@ namespace smart_carrer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Desea salir?", "Saliendo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 this.Close();
             }
+        }
+
+        private void descripcion_txt_KeyUp(object sender, KeyEventArgs e)
+        {
+            cargar_datos();
         }
         
     }
