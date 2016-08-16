@@ -399,6 +399,7 @@
             this.Name = "aptitudes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aptitudes";
+            this.Load += new System.EventHandler(this.aptitudes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
