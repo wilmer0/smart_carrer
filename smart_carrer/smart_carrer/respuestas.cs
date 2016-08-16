@@ -74,70 +74,67 @@ namespace smart_carrer
 
         private void button8_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("Desea guardar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                
-                int estado = 0;
-                if(descripcion_respuesta.Text.Trim()!="")
+                try
                 {
-                    if(ck_estado_respuesta.Checked==true)
+                    int estado = 0;
+                    if (descripcion_respuesta.Text.Trim() != "")
                     {
-                        estado = 1;
-                    }
-                    else
-                    {
-                        estado = 0;
-                    }
-                    if(codigo_respuesta_txt.Text.Trim()=="")
-                    {
-                        //guardar
-                        /*
-                  create proc insert_respuesta
-                  @descripcion varchar(max),@estado int,@codigo int
-                 */
-                        string sql = "exec insert_respuesta '"+descripcion_respuesta.Text.Trim()+"','"+estado.ToString()+"','0'";
-                        DataSet ds = utilidades.ejecutarcomando(sql);
-                        if(ds.Tables[0].Rows.Count>0)
+                        if (ck_estado_respuesta.Checked == true)
                         {
-                            MessageBox.Show("Se agrego la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                            estado = 1;
                         }
                         else
                         {
-                            MessageBox.Show("No se agrego la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                            estado = 0;
+                        }
+                        if (codigo_respuesta_txt.Text.Trim() == "")
+                        {
+                            //guardar
+                            /*
+                                create proc insert_respuesta
+                                @descripcion varchar(max),@estado int,@codigo int
+                            */
+                            string sql = "exec insert_respuesta '" + descripcion_respuesta.Text.Trim() + "','" + estado.ToString() + "','0'";
+                            DataSet ds = utilidades.ejecutarcomando(sql);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                MessageBox.Show("Se agrego la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se agrego la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            //actualiza
+                            string sql = "exec insert_respuesta '" + descripcion_respuesta.Text.Trim() + "','" + estado.ToString() + codigo_respuesta_txt.Text.Trim() + "'";
+                            DataSet ds = utilidades.ejecutarcomando(sql);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                MessageBox.Show("Se actualizo la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se actualizo la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
                     {
-                        //actualiza
-                        /*
-                  create proc insert_respuesta
-                  @descripcion varchar(max),@estado int,@codigo int
-                 */
-
-                        string sql = "exec insert_respuesta '" + descripcion_respuesta.Text.Trim() + "','" + estado.ToString() + "','"+codigo_respuesta_txt.Text.Trim()+"'";
-                        DataSet ds = utilidades.ejecutarcomando(sql);
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            MessageBox.Show("Se actualizo la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se actualizo la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Error); 
-                        }
+                        MessageBox.Show("Falta la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Falta la respuesta", "", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error :"+ex.ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error :" + ex.ToString());
+                }
             }
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
 

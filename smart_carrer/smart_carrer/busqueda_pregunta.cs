@@ -97,5 +97,18 @@ namespace smart_carrer
                 this.Close();
             }
         }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int fila = dataGridView1.CurrentRow.Index;
+                textBox1.Text = dataGridView1.Rows[fila].Cells[1].Value.ToString();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

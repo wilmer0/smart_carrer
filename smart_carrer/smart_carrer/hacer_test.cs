@@ -21,8 +21,6 @@ namespace smart_carrer
         {
             cargar_tests();
             resultado_txt.ScrollBars = ScrollBars.Vertical;
-
-
         }
         int left;
         int top;
@@ -156,7 +154,7 @@ namespace smart_carrer
             }
             catch (Exception)
             {
-                MessageBox.Show("Error en el evento click boton test","",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error en el evento click boton test", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         string codigo_respuesta_seleccionada = "";
@@ -176,17 +174,22 @@ namespace smart_carrer
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            bool a = validarRespuestas(false);
-            if (a)
+            DialogResult result = MessageBox.Show("Desea guardar?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                validarRespuestas(true);
-                llenarGrafico();
-                calcularResultado();
-                MessageBox.Show("Proceso finalizado");
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una respuesta por cada pregunta");
+                bool a = validarRespuestas(false);
+                if (a)
+                {
+                    validarRespuestas(true);
+                    llenarGrafico();
+                    calcularResultado();
+                    MessageBox.Show("Proceso finalizado", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  
+                }
+                else
+                {
+                    MessageBox.Show("Debes seleccionar una respuesta por cada preguna", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         List<double> Puntaje;
@@ -331,33 +334,32 @@ namespace smart_carrer
                                 //crear un ciclo anterior que me traiga todas las carreras del test y que hag ala comparacion
                                 string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
                                 DataSet ds = utilidades.ejecutarcomando(sql);
-                                    puntosLocales = 0;
-                                    foreach (DataRow row2 in ds.Tables[0].Rows)
+                                puntosLocales = 0;
+                                foreach (DataRow row2 in ds.Tables[0].Rows)
+                                {
+                                    //create proc getPuntosByPreguntaRespuesta
+                                    //@codTest int,@codPregunta int,@codRespuesta int
+                                    //puntos-cod_carrera
+                                    //MessageBox.Show("Codigo carrera "+row2[0].ToString());
+                                    cmd = "exec getPuntosByPreguntaRespuesta '" + codigo_test_presionado.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "'";
+                                    dx = utilidades.ejecutarcomando(cmd);
+                                    if (row2[0].ToString() == dx.Tables[0].Rows[0][1].ToString())
                                     {
-                                        //create proc getPuntosByPreguntaRespuesta
-                                        //@codTest int,@codPregunta int,@codRespuesta int
-                                        //puntos-cod_carrera
-                                        //MessageBox.Show("Codigo carrera "+row2[0].ToString());
-                                        cmd = "exec getPuntosByPreguntaRespuesta '" + codigo_test_presionado.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "'";
-                                        dx = utilidades.ejecutarcomando(cmd);
-                                        if (row2[0].ToString() == dx.Tables[0].Rows[0][1].ToString())
-                                        {
-                                            puntosLocales = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
-                                            //Puntaje.Add(puntosLocales);
-                                            nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
-                                            codigoCarrera=dx.Tables[0].Rows[0][1].ToString();
-                                        }
-
+                                        puntosLocales = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                                        //Puntaje.Add(puntosLocales);
+                                        nombreCarrera = getNombreCarreraById(dx.Tables[0].Rows[0][1].ToString());
+                                        codigoCarrera = dx.Tables[0].Rows[0][1].ToString();
                                     }
-                                    if (!resultado_txt.Text.Contains( " Carrera:" + nombreCarrera + "-Pregunta:"+pregunta.Text+"- respuesta:" + respuesta.Tag.ToString() + "-puntos:" + (puntosLocales).ToString()));
-                                    {
-                                        /*create proc insert_test_resultado_respuestas
-                                         @codTest int,@codCarrera int,@codPregunta int,@codRespuesta int,@puntos float,@codigo int*/
-                                        string cx = "exec insert_test_resultado_respuestas '" + codigo_test_presionado.ToString() + "','" + codigoCarrera.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "','" + puntosLocales.ToString() + "','" + codigoTestRespuesta.ToString() + "'";
-                                        utilidades.ejecutarcomando(cx);
-                                        resultado_txt.Text += " Carrera:" + nombreCarrera + "-Pregunta:"+pregunta.Text+"- respuesta:" + codigo_respuesta_seleccionada.ToString() + "-puntos:" + (puntosLocales).ToString();
-                                        resultado_txt.Text += Environment.NewLine;   
-                                    }
+                                }
+                                if (!resultado_txt.Text.Contains(" Carrera:" + nombreCarrera + "-Pregunta:" + pregunta.Text + "- respuesta:" + respuesta.Tag.ToString() + "-puntos:" + (puntosLocales).ToString())) ;
+                                {
+                                    /*create proc insert_test_resultado_respuestas
+                                     @codTest int,@codCarrera int,@codPregunta int,@codRespuesta int,@puntos float,@codigo int*/
+                                    string cx = "exec insert_test_resultado_respuestas '" + codigo_test_presionado.ToString() + "','" + codigoCarrera.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "','" + puntosLocales.ToString() + "','" + codigoTestRespuesta.ToString() + "'";
+                                    utilidades.ejecutarcomando(cx);
+                                    resultado_txt.Text += " Carrera:" + nombreCarrera + "-Pregunta:" + pregunta.Text + "- respuesta:" + codigo_respuesta_seleccionada.ToString() + "-puntos:" + (puntosLocales).ToString();
+                                    resultado_txt.Text += Environment.NewLine;
+                                }
                             }
                             marcada = true;
                         }
@@ -391,13 +393,13 @@ namespace smart_carrer
         private void chart1_Click(object sender, EventArgs e)
         {
         }
-        public string getPuntosByTestCarrera(string cod_test,string codigo_carrera)
+        public string getPuntosByTestCarrera(string cod_test, string codigo_carrera)
         {
             try
             {
-                string sql = "select sum(puntos) from test_vs_preguntas where cod_test='"+cod_test.ToString()+"' and cod_carrera='"+codigo_carrera.ToString()+"'";
+                string sql = "select sum(puntos) from test_vs_preguntas where cod_test='" + cod_test.ToString() + "' and cod_carrera='" + codigo_carrera.ToString() + "'";
                 DataSet ds = utilidades.ejecutarcomando(sql);
-                if(ds.Tables[0].Rows[0][0].ToString()!="")
+                if (ds.Tables[0].Rows[0][0].ToString() != "")
                 {
                     return ds.Tables[0].Rows[0][0].ToString();
                 }
@@ -406,50 +408,82 @@ namespace smart_carrer
                     return null;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error getPuntosByTestCarrera :"+ex.ToString());
+                MessageBox.Show("Error getPuntosByTestCarrera :" + ex.ToString());
                 return null;
             }
         }
         public void calcularResultado()
         {
-            double puntos = 0;
-            double sumaPuntos = 0;
-            resultado_txt.Text += Environment.NewLine;
-            //se selecciona todas las carreras vinculadas al test para poder sacar la sumatoria total que afecta la carrera dentro del test
-            string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='"+codigo_test_presionado.ToString()+"'";
-            DataSet ds = utilidades.ejecutarcomando(sql);
-            DataSet ds2=utilidades.ejecutarcomando(sql);
-            foreach(DataRow row1 in ds.Tables[0].Rows)
+            try
             {
-                codigoCarrera = row1[0].ToString();
-                puntos = Convert.ToDouble(getPuntosByTestCarrera(codigo_test_presionado.ToString(), row1[0].ToString()));
-                string sql2 = "select sum(puntos) from test_resultado_vs_respuestas where codigo='" + codigoTestRespuesta.ToString() + "' and cod_test='" + codigo_test_presionado.ToString() + "' and cod_carrera='" + row1[0].ToString() + "'";
-                DataSet dx = utilidades.ejecutarcomando(sql2);
-                if (dx.Tables[0].Rows[0][0].ToString() != "")
-                {
-                    sumaPuntos = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
-                }
-                puntos=Math.Round(((sumaPuntos / puntos) * 100),2);
-                resultado_txt.Text += "Carrera: " + getNombreCarreraById(row1[0].ToString()) + ", Porciento: " +puntos.ToString() + "%";
+                double puntos = 0;
+                double sumaPuntos = 0;
                 resultado_txt.Text += Environment.NewLine;
-                string cmd = "insert into test_resultado_final(codigo,fecha,cod_Carrera,puntuacion) values('"+codigoTestRespuesta.ToString()+"',GETDATE(),'"+codigoCarrera.ToString()+"','"+puntos.ToString()+"')";
-                utilidades.ejecutarcomando(cmd);
+                //se selecciona todas las carreras vinculadas al test para poder sacar la sumatoria total que afecta la carrera dentro del test
+                string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
+                DataSet ds = utilidades.ejecutarcomando(sql);
+                DataSet ds2 = utilidades.ejecutarcomando(sql);
+                foreach (DataRow row1 in ds.Tables[0].Rows)
+                {
+                    codigoCarrera = row1[0].ToString();
+                    puntos = Convert.ToDouble(getPuntosByTestCarrera(codigo_test_presionado.ToString(), row1[0].ToString()));
+                    string sql2 = "select sum(puntos) from test_resultado_vs_respuestas where codigo='" + codigoTestRespuesta.ToString() + "' and cod_test='" + codigo_test_presionado.ToString() + "' and cod_carrera='" + row1[0].ToString() + "'";
+                    DataSet dx = utilidades.ejecutarcomando(sql2);
+                    if (dx.Tables[0].Rows[0][0].ToString() != "")
+                    {
+                        sumaPuntos = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                    }
+                    puntos = Math.Round(((sumaPuntos / puntos) * 100), 2);
+                    resultado_txt.Text += "Carrera: " + getNombreCarreraById(row1[0].ToString()) + ", Porciento: " + puntos.ToString() + "%";
+                    resultado_txt.Text += Environment.NewLine;
+                    string cmd = "insert into test_resultado_final(codigo,fecha,cod_Carrera,puntuacion) values('" + codigoTestRespuesta.ToString() + "',GETDATE(),'" + codigoCarrera.ToString() + "','" + puntos.ToString() + "')";
+                    utilidades.ejecutarcomando(cmd);
+                }
+                //parte final para decirle que carrera escoger siempre y cuando la puntuacion haya sido la mas alta
+                sql = "select trf.codigo,c.nombre,trf.fecha,trf.cod_carrera,trf.puntuacion  from test_resultado_final trf join carreras c on trf.cod_carrera=c.codigo where trf.codigo='" + codigoTestRespuesta.ToString() + "' and trf.puntuacion=(select max(t.puntuacion) from test_resultado_final t where t.codigo='" + codigoTestRespuesta.ToString() + "')";
+                ds = utilidades.ejecutarcomando(sql);
+                resultado_txt.Text += Environment.NewLine;
+                resultado_txt.Text += Environment.NewLine;
+                resultado_txt.Text += "Carreras Recomendadas:";
+                resultado_txt.Text += Environment.NewLine;
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    resultado_txt.Text += "Carrera: " + row[1].ToString() + "- Puntos: " + row[4].ToString();
+                    resultado_txt.Text += Environment.NewLine;
+                }
+                resultado_txt.Text += Environment.NewLine;
+                resultado_txt.Text += Environment.NewLine;
+                resultado_txt.Text += "Algunas aptitudes que debes poseer son:";
+                resultado_txt.Text += Environment.NewLine;
+                resultado_txt.Text += Environment.NewLine;
+                //ahora darle algunas recomendaciones que deberia tener algunas cualidades que le pueden se mucha ayuda para determinar la carrera
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    string query = "select ap.nombre from carrera_vs_aptirudes ca join carreras c on ca.cod_carrera=c.codigo join aptitudes ap on ca.cod_aptitud=ap.codigo where cod_carrera='" + row[3].ToString() + "'";
+                    DataSet data = utilidades.ejecutarcomando(query);
+                    foreach (DataRow aptitud in data.Tables[0].Rows)
+                    {
+                        resultado_txt.Text += "Carrera: " + row[1].ToString() + "-->" + aptitud[0].ToString();
+                        resultado_txt.Text += Environment.NewLine;
+                    }
+                    resultado_txt.Text += Environment.NewLine;
+                    resultado_txt.Text += Environment.NewLine;
+                }
+
             }
-
-
-            //parte final para decirle que carrera escoger siempre y cuando la puntuacion haya sido la mas alta
-            sql="select trf.codigo,c.nombre,trf.fecha,trf.cod_carrera,trf.puntuacion  from test_resultado_final trf join carreras c on trf.cod_carrera=c.codigo where trf.codigo='"+codigoTestRespuesta.ToString()+"' and trf.puntuacion=(select max(t.puntuacion) from test_resultado_final t where t.codigo='"+codigoTestRespuesta.ToString()+"')";
-            ds = utilidades.ejecutarcomando(sql);
-            resultado_txt.Text +=Environment.NewLine; 
-            resultado_txt.Text += Environment.NewLine;
-            resultado_txt.Text += "Carreras Recomendadas:";
-            resultado_txt.Text += Environment.NewLine; 
-            foreach(DataRow row in ds.Tables[0].Rows)
+            catch (Exception ex)
             {
-                resultado_txt.Text += "Carrera: "+row[1].ToString()+"- Puntos: "+row[4].ToString();
-                resultado_txt.Text += Environment.NewLine; 
+                MessageBox.Show("Error procesando: " + ex.ToString());
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
             }
         }
     }

@@ -143,6 +143,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "busqueda_carrera";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "busqueda_carrera";
             this.Load += new System.EventHandler(this.busqueda_carrera_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
