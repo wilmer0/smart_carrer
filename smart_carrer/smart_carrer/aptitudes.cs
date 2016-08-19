@@ -25,7 +25,7 @@ namespace smart_carrer
             {
                 /*
                     create proc insert_aptitudes
-                    @nombre varchar(max),@descripcion varchar(150),@estado int,@codigo int
+                    @nombre varchar(max),@descripcion varchar(150),@estado int,@obligatoria int,@codigo int
                  */
                 bool procesar = validarCampos();
                 if (procesar)
@@ -171,13 +171,13 @@ namespace smart_carrer
             dataGridView1.Rows.Clear();
             if(codigo_carrera_txt.Text.Trim()!="")
             {
-                string sql = "select ca.cod_carrera,c.nombre,ca.cod_aptitud,ap.nombre from carrera_vs_aptirudes ca join carreras c on ca.cod_carrera=c.codigo join aptitudes ap on ca.cod_aptitud=ap.codigo where cod_carrera='"+codigo_carrera_txt.Text.Trim()+"'";
+                string sql = "select ca.cod_carrera,c.nombre,ca.cod_aptitud,ap.nombre,ca.obligatoria from carrera_vs_aptirudes ca join carreras c on ca.cod_carrera=c.codigo join aptitudes ap on ca.cod_aptitud=ap.codigo where cod_carrera='"+codigo_carrera_txt.Text.Trim()+"'";
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 if(ds.Tables[0].Rows.Count>0)
                 { 
                     foreach(DataRow row in ds.Tables[0].Rows)
                     {
-                        dataGridView1.Rows.Add(row[0].ToString(),row[1].ToString(),row[2].ToString(),row[3].ToString());
+                        dataGridView1.Rows.Add(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
                     }
                 }
             }
@@ -222,11 +222,11 @@ namespace smart_carrer
         {
             if(dataGridView1.Rows.Count>0)
             {
-                string sql = "delete from carreras_vs_aptirudes";
+                string sql = "delete from carrera_vs_aptirudes where cod_carrera='"+codigo_carrera_txt.Text.Trim()+"'";
                 utilidades.ejecutarcomando(sql);
                 foreach(DataGridViewRow row in dataGridView1.Rows)
                 {
-                    sql = "exec insert_carrera_aptitud  '"+row.Cells[0].Value.ToString()+"','"+row.Cells[2].Value.ToString()+"'";
+                    sql = "exec insert_carrera_aptitud  '" + row.Cells[0].Value.ToString() + "','" + row.Cells[2].Value.ToString() + "','" + row.Cells[4].Value.ToString() + "'";
                     utilidades.ejecutarcomando(sql);
                 }
                 MessageBox.Show("Se agregaron las aptitudes por carreras","",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -242,11 +242,19 @@ namespace smart_carrer
             int cont = 0;
             try
             {
+                int obligatoria = 0;
                 if (codigo_carrera_txt.Text.Trim() != "")
                 {
                     if (codigo_aptitud_txt.Text.Trim() != "")
                     {
-
+                        if(ck_obligatoria.Checked==true)
+                        {
+                            obligatoria = 1;
+                        }
+                        else
+                        {
+                            obligatoria = 0;
+                        }
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             if (row.Cells[0].Value.ToString() == codigo_carrera_txt.Text.Trim() && row.Cells[2].Value.ToString() == codigo_aptitud_txt.Text.Trim())
@@ -256,7 +264,7 @@ namespace smart_carrer
                         }
                         if (cont == 0)
                         {
-                            dataGridView1.Rows.Add(codigo_carrera_txt.Text.Trim(), nombre_carrera_txt.Text.Trim(), codigo_aptitud_txt.Text.Trim(), nombre_aptitud_txt.Text.Trim());
+                            dataGridView1.Rows.Add(codigo_carrera_txt.Text.Trim(), nombre_carrera_txt.Text.Trim(), codigo_aptitud_txt.Text.Trim(), nombre_aptitud_txt.Text.Trim(),obligatoria.ToString());
                         }
                         else
                         {

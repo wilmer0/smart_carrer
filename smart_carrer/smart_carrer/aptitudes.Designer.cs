@@ -46,10 +46,6 @@
             this.nombre_aptitud_txt = new System.Windows.Forms.TextBox();
             this.nombre_carrera_txt = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codigogridcarrera = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carreragrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cod_aptitudgrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aptitudgrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigo_aptitud_txt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -58,6 +54,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.ck_obligatoria = new System.Windows.Forms.CheckBox();
+            this.codigogridcarrera = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carreragrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cod_aptitudgrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aptitudgrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.obligaogrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -189,6 +191,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ck_obligatoria);
             this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.nombre_aptitud_txt);
@@ -213,7 +216,7 @@
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.BackgroundImage = global::smart_carrer.Properties.Resources.cancel;
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(397, 106);
+            this.button6.Location = new System.Drawing.Point(397, 145);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(37, 31);
             this.button6.TabIndex = 95;
@@ -225,7 +228,7 @@
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.BackgroundImage = global::smart_carrer.Properties.Resources.down_yellow_arrow_icon_clip_art;
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(440, 106);
+            this.button5.Location = new System.Drawing.Point(440, 145);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(37, 31);
             this.button5.TabIndex = 94;
@@ -262,43 +265,18 @@
             this.codigogridcarrera,
             this.carreragrid,
             this.cod_aptitudgrid,
-            this.aptitudgrid});
+            this.aptitudgrid,
+            this.obligaogrid});
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 137);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 182);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(471, 193);
+            this.dataGridView1.Size = new System.Drawing.Size(471, 148);
             this.dataGridView1.TabIndex = 91;
-            // 
-            // codigogridcarrera
-            // 
-            this.codigogridcarrera.FillWeight = 40F;
-            this.codigogridcarrera.HeaderText = "cod";
-            this.codigogridcarrera.Name = "codigogridcarrera";
-            this.codigogridcarrera.ReadOnly = true;
-            // 
-            // carreragrid
-            // 
-            this.carreragrid.HeaderText = "Carrera";
-            this.carreragrid.Name = "carreragrid";
-            this.carreragrid.ReadOnly = true;
-            // 
-            // cod_aptitudgrid
-            // 
-            this.cod_aptitudgrid.FillWeight = 40F;
-            this.cod_aptitudgrid.HeaderText = "cod";
-            this.cod_aptitudgrid.Name = "cod_aptitudgrid";
-            this.cod_aptitudgrid.ReadOnly = true;
-            // 
-            // aptitudgrid
-            // 
-            this.aptitudgrid.HeaderText = "Aptitud";
-            this.aptitudgrid.Name = "aptitudgrid";
-            this.aptitudgrid.ReadOnly = true;
             // 
             // codigo_aptitud_txt
             // 
@@ -384,6 +362,53 @@
             this.label6.TabIndex = 86;
             this.label6.Text = "X";
             // 
+            // ck_obligatoria
+            // 
+            this.ck_obligatoria.AutoSize = true;
+            this.ck_obligatoria.Checked = true;
+            this.ck_obligatoria.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ck_obligatoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ck_obligatoria.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.ck_obligatoria.Location = new System.Drawing.Point(72, 135);
+            this.ck_obligatoria.Name = "ck_obligatoria";
+            this.ck_obligatoria.Size = new System.Drawing.Size(96, 21);
+            this.ck_obligatoria.TabIndex = 96;
+            this.ck_obligatoria.Text = "Obligatoria";
+            this.ck_obligatoria.UseVisualStyleBackColor = true;
+            // 
+            // codigogridcarrera
+            // 
+            this.codigogridcarrera.FillWeight = 40F;
+            this.codigogridcarrera.HeaderText = "cod";
+            this.codigogridcarrera.Name = "codigogridcarrera";
+            this.codigogridcarrera.ReadOnly = true;
+            // 
+            // carreragrid
+            // 
+            this.carreragrid.HeaderText = "Carrera";
+            this.carreragrid.Name = "carreragrid";
+            this.carreragrid.ReadOnly = true;
+            // 
+            // cod_aptitudgrid
+            // 
+            this.cod_aptitudgrid.FillWeight = 40F;
+            this.cod_aptitudgrid.HeaderText = "cod";
+            this.cod_aptitudgrid.Name = "cod_aptitudgrid";
+            this.cod_aptitudgrid.ReadOnly = true;
+            // 
+            // aptitudgrid
+            // 
+            this.aptitudgrid.HeaderText = "Aptitud";
+            this.aptitudgrid.Name = "aptitudgrid";
+            this.aptitudgrid.ReadOnly = true;
+            // 
+            // obligaogrid
+            // 
+            this.obligaogrid.FillWeight = 50F;
+            this.obligaogrid.HeaderText = "obligatoria";
+            this.obligaogrid.Name = "obligaogrid";
+            this.obligaogrid.ReadOnly = true;
+            // 
             // aptitudes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -432,13 +457,15 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigogridcarrera;
-        private System.Windows.Forms.DataGridViewTextBoxColumn carreragrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cod_aptitudgrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aptitudgrid;
         private System.Windows.Forms.TextBox nombre_aptitud_txt;
         private System.Windows.Forms.TextBox nombre_carrera_txt;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.CheckBox ck_obligatoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigogridcarrera;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carreragrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cod_aptitudgrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aptitudgrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn obligaogrid;
     }
 }

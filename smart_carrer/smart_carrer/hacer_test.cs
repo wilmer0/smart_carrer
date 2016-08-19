@@ -182,7 +182,8 @@ namespace smart_carrer
                 {
                     validarRespuestas(true);
                     llenarGrafico();
-                    calcularResultado();
+                    //calcularResultado();
+                    calcularResultado2();
                     MessageBox.Show("Proceso finalizado", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                   
                 }
@@ -306,7 +307,7 @@ namespace smart_carrer
         {
             try
             {
-                codigoTestRespuesta = getNextCodigoTest();
+                codigoTestRespuesta = getNextCodigoTest();//sera la secuencia de los numeros de test que se van realizando
                 resultado_txt.Clear();
                 string cmd = "";
                 string codigo_respuesta_seleccionada = "";
@@ -353,11 +354,20 @@ namespace smart_carrer
                                 }
                                 if (!resultado_txt.Text.Contains(" Carrera:" + nombreCarrera + "-Pregunta:" + pregunta.Text + "- respuesta:" + respuesta.Tag.ToString() + "-puntos:" + (puntosLocales).ToString())) ;
                                 {
+                                    
+                                    //primero sacar la aptitud que afecta esa respuesta de esta pregunta
+                                    string ap = "select tp.cod_aptitud,ap.nombre  from test_vs_preguntas tp join preguntas pre on tp.cod_pregunta=pre.codigo join respuestas rep on tp.cod_respuesta=rep.codigo join aptitudes ap on ap.codigo=tp.cod_aptitud  where tp.cod_pregunta='" + pregunta.Tag.ToString() + "' and tp.cod_respuesta='" + codigo_respuesta_seleccionada.ToString() + "'";
+                                    DataSet dp = utilidades.ejecutarcomando(ap);
+
+
+
+
                                     /*create proc insert_test_resultado_respuestas
-                                     @codTest int,@codCarrera int,@codPregunta int,@codRespuesta int,@puntos float,@codigo int*/
-                                    string cx = "exec insert_test_resultado_respuestas '" + codigo_test_presionado.ToString() + "','" + codigoCarrera.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "','" + puntosLocales.ToString() + "','" + codigoTestRespuesta.ToString() + "'";
+                                    @codTest int,@codCarrera int,@codPregunta int,@codRespuesta int,@puntos float,@cod_aptitud int,@codigo int
+                                    */
+                                    string cx = "exec insert_test_resultado_respuestas '" + codigo_test_presionado.ToString() + "','" + codigoCarrera.ToString() + "','" + pregunta.Tag.ToString() + "','" + respuesta.Tag.ToString() + "','" + puntosLocales.ToString() + "','"+dp.Tables[0].Rows[0][0].ToString()+"','" + codigoTestRespuesta.ToString() + "'";
                                     utilidades.ejecutarcomando(cx);
-                                    resultado_txt.Text += " Carrera:" + nombreCarrera + "-Pregunta:" + pregunta.Text + "- respuesta:" + codigo_respuesta_seleccionada.ToString() + "-puntos:" + (puntosLocales).ToString();
+                                    resultado_txt.Text += " Carrera:" + nombreCarrera + "-Pregunta:" + pregunta.Text + "- respuesta:" + codigo_respuesta_seleccionada.ToString()+"- aptitud: "+dp.Tables[0].Rows[0][1].ToString() +"-puntos:" + (puntosLocales).ToString();
                                     resultado_txt.Text += Environment.NewLine;
                                 }
                             }
@@ -414,7 +424,119 @@ namespace smart_carrer
                 return null;
             }
         }
-        public void calcularResultado()
+
+        public void calcularResultado2()
+        {
+            try
+            {
+                string nombre_carrera="";
+                double puntos = 0;
+                double sumaPuntos = 0;
+                double AptitudesObligatorias = 0;
+                double AptitudesObligatoriasObtenidas = 0;
+                double AptitudesNoObligatorias = 0;
+                double AptitudesNoObligatoriasObtenidas = 0;
+                resultado_txt.Text += Environment.NewLine;
+                //se selecciona todas las carreras vinculadas al test para poder sacar la sumatoria total que afecta la carrera dentro del test
+                string sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
+                DataSet dataSetCarrera = utilidades.ejecutarcomando(sql);
+                foreach (DataRow rowCarrera in dataSetCarrera.Tables[0].Rows)
+                {
+
+                    //sacando el nombre de la carrera en curso
+                    string x = "select nombre from carreras where codigo='" + rowCarrera[0].ToString() + "'";
+                    DataSet dx = utilidades.ejecutarcomando(x);
+                    if (dx.Tables[0].Rows[0][0].ToString()!="")
+                    {
+                        nombre_carrera = dx.Tables[0].Rows[0][0].ToString();
+                    }
+                      
+                    //sacar la cantidad de aptitudes obligatorias de la carrera en curso
+                    x = "select count(*) from carrera_vs_aptirudes where cod_carrera='" + rowCarrera[0].ToString() + "' and obligatoria='1'";
+                    dx = utilidades.ejecutarcomando(sql);
+                    if(dx.Tables[0].Rows.Count>0)
+                    {
+                        AptitudesObligatorias = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                    }
+                    //sacar la cantidad de aptitudes no obligatorias de la carrera en curso
+                    x = "select count(*) from carrera_vs_aptirudes where cod_carrera='" + rowCarrera[0].ToString() + "' and obligatoria='0'";
+                    dx = utilidades.ejecutarcomando(x);
+                    if (dx.Tables[0].Rows.Count > 0)
+                    {
+                        AptitudesNoObligatorias = Convert.ToDouble(dx.Tables[0].Rows[0][0].ToString());
+                    }
+                    //MessageBox.Show("Carrera:"+nombre_carrera.ToString() + "    -Aptitudes obligatorias:     " + AptitudesObligatorias.ToString());
+                    //MessageBox.Show("Carrera:"+nombre_carrera.ToString() + "    -Aptitudes No obligatorias:   " + AptitudesNoObligatorias.ToString());
+
+                    //debo de sumar todos los puntos correspondiendo a cada aptitud para entonces saber lo que respondio el y sacar
+                    //un porcentaje en base a las respuestas
+                }
+
+
+                //fin de procesar las aptitudes obligatorias y no obligatorios
+                //revisar toda esta parte
+                sql = "select distinct cod_carrera from test_vs_preguntas where cod_test='" + codigo_test_presionado.ToString() + "'";
+                dataSetCarrera = utilidades.ejecutarcomando(sql);
+                //sacar las aptitudes vinculadas a la carrera
+                //otravez recorriendo todas las carreras que afectan el test para obtener puntaje por cada aptitud
+                foreach(DataRow rowCarrera in dataSetCarrera.Tables[0].Rows)
+                {
+
+
+                    //sacar las aptitudes que son obligatorias
+                    sql = "select ca.cod_aptitud,ap.nombre,tr.cod_carrera,carr.nombre,tr.puntos from test_resultado_vs_respuestas tr join carrera_vs_aptirudes ca on tr.cod_aptitud=ca.cod_aptitud join aptitudes ap on ap.codigo=tr.cod_aptitud join carreras carr on carr.codigo=tr.cod_carrera where tr.cod_carrera='"+rowCarrera[0].ToString()+"' and ca.obligatoria='1' and tr.codigo='"+codigoTestRespuesta.ToString()+"'";
+                    DataSet dataSetAptitudes = utilidades.ejecutarcomando(sql);
+                    foreach (DataRow rowAptitudes in dataSetAptitudes.Tables[0].Rows)
+                    {
+                        //create proc insert_test_resultado_aptitudes
+                        //@codigo int,@cod_test int,@cod_carrera int,@cod_aptitud int,@puntos int
+
+                        string qw = "exec insert_test_resultado_aptitudes '"+codigoTestRespuesta.ToString()+"','"+codigo_test_presionado.ToString()+"','"+rowCarrera[0].ToString()+"','"+rowAptitudes[0].ToString()+"','"+rowAptitudes[4].ToString()+"'";
+                        utilidades.ejecutarcomando(qw);
+                    }
+
+                    //sacar las aptitudes que no son obligatorias
+                    sql = "select ca.cod_aptitud,ap.nombre,tr.cod_carrera,carr.nombre,tr.puntos from test_resultado_vs_respuestas tr join carrera_vs_aptirudes ca on tr.cod_aptitud=ca.cod_aptitud join aptitudes ap on ap.codigo=tr.cod_aptitud join carreras carr on carr.codigo=tr.cod_carrera where tr.cod_carrera='" + rowCarrera[0].ToString() + "' and ca.obligatoria='0' and tr.codigo='" + codigoTestRespuesta.ToString() + "'";
+                    dataSetAptitudes = utilidades.ejecutarcomando(sql);
+                    foreach (DataRow rowAptitudes in dataSetAptitudes.Tables[0].Rows)
+                    {
+                        //create proc insert_test_resultado_aptitudes
+                        //@codigo int,@cod_test int,@cod_carrera int,@cod_aptitud int,@puntos int
+                        string qw = "exec insert_test_resultado_aptitudes '" + codigoTestRespuesta.ToString() + "','" + codigo_test_presionado.ToString() + "','" + rowCarrera[0].ToString() + "','" + rowAptitudes[0].ToString() + "','" + rowAptitudes[4].ToString() + "'";
+                        utilidades.ejecutarcomando(qw);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error procesando: " + ex.ToString());
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*public void calcularResultado()
         {
             try
             {
@@ -442,6 +564,8 @@ namespace smart_carrer
                     string cmd = "insert into test_resultado_final(codigo,fecha,cod_Carrera,puntuacion) values('" + codigoTestRespuesta.ToString() + "',GETDATE(),'" + codigoCarrera.ToString() + "','" + puntos.ToString() + "')";
                     utilidades.ejecutarcomando(cmd);
                 }
+
+
                 //parte final para decirle que carrera escoger siempre y cuando la puntuacion haya sido la mas alta
                 sql = "select trf.codigo,c.nombre,trf.fecha,trf.cod_carrera,trf.puntuacion  from test_resultado_final trf join carreras c on trf.cod_carrera=c.codigo where trf.codigo='" + codigoTestRespuesta.ToString() + "' and trf.puntuacion=(select max(t.puntuacion) from test_resultado_final t where t.codigo='" + codigoTestRespuesta.ToString() + "')";
                 ds = utilidades.ejecutarcomando(sql);
@@ -478,7 +602,8 @@ namespace smart_carrer
             {
                 MessageBox.Show("Error procesando: " + ex.ToString());
             }
-        }
+        }*/
+
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Desea salir?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
