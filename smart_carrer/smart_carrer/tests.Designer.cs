@@ -40,34 +40,41 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nombre_aptitud_txt = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.codigo_aptitud_txt = new System.Windows.Forms.TextBox();
             this.descripcion_respuesta_txt = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.codigo_respuesta_txt = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.puntos_txt = new System.Windows.Forms.TextBox();
             this.nombre_carrera_txt = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.descripcion_pregunta_txt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.codigo_carrera_txt = new System.Windows.Forms.TextBox();
-            this.codigo_pregunta_txt = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.codigo_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cod_carreregagrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.carreragrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigorespuesta_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.respuestagrdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codaptitudgrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aptitudgrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.puntosgrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.codigo_carrera_txt = new System.Windows.Forms.TextBox();
+            this.codigo_pregunta_txt = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -188,17 +195,22 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.nombre_aptitud_txt);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.button8);
+            this.groupBox2.Controls.Add(this.codigo_aptitud_txt);
             this.groupBox2.Controls.Add(this.descripcion_respuesta_txt);
             this.groupBox2.Controls.Add(this.groupBox1);
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.codigo_respuesta_txt);
-            this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.puntos_txt);
             this.groupBox2.Controls.Add(this.nombre_carrera_txt);
-            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.descripcion_pregunta_txt);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.button5);
@@ -211,9 +223,60 @@
             this.groupBox2.Controls.Add(this.codigo_pregunta_txt);
             this.groupBox2.Location = new System.Drawing.Point(21, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1003, 449);
+            this.groupBox2.Size = new System.Drawing.Size(1003, 521);
             this.groupBox2.TabIndex = 65;
             this.groupBox2.TabStop = false;
+            // 
+            // nombre_aptitud_txt
+            // 
+            this.nombre_aptitud_txt.Location = new System.Drawing.Point(462, 310);
+            this.nombre_aptitud_txt.Name = "nombre_aptitud_txt";
+            this.nombre_aptitud_txt.ReadOnly = true;
+            this.nombre_aptitud_txt.Size = new System.Drawing.Size(530, 20);
+            this.nombre_aptitud_txt.TabIndex = 84;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label12.Location = new System.Drawing.Point(461, 291);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 17);
+            this.label12.TabIndex = 81;
+            this.label12.Text = "Aptitud";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label13.Location = new System.Drawing.Point(648, 287);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(17, 17);
+            this.label13.TabIndex = 83;
+            this.label13.Text = "X";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button8.Location = new System.Drawing.Point(608, 279);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(34, 30);
+            this.button8.TabIndex = 82;
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // codigo_aptitud_txt
+            // 
+            this.codigo_aptitud_txt.Location = new System.Drawing.Point(565, 287);
+            this.codigo_aptitud_txt.Name = "codigo_aptitud_txt";
+            this.codigo_aptitud_txt.ReadOnly = true;
+            this.codigo_aptitud_txt.Size = new System.Drawing.Size(37, 20);
+            this.codigo_aptitud_txt.TabIndex = 80;
             // 
             // descripcion_respuesta_txt
             // 
@@ -223,6 +286,32 @@
             this.descripcion_respuesta_txt.ReadOnly = true;
             this.descripcion_respuesta_txt.Size = new System.Drawing.Size(530, 71);
             this.descripcion_respuesta_txt.TabIndex = 79;
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.BackgroundImage = global::smart_carrer.Properties.Resources.down_yellow_arrow_icon_clip_art;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.Location = new System.Drawing.Point(955, 278);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(37, 31);
+            this.button4.TabIndex = 66;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.BackgroundImage = global::smart_carrer.Properties.Resources.cancel;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.Location = new System.Drawing.Point(912, 278);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(37, 31);
+            this.button6.TabIndex = 67;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label10
             // 
@@ -266,24 +355,12 @@
             this.codigo_respuesta_txt.Size = new System.Drawing.Size(37, 20);
             this.codigo_respuesta_txt.TabIndex = 75;
             // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.BackgroundImage = global::smart_carrer.Properties.Resources.cancel;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(911, 156);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(37, 31);
-            this.button6.TabIndex = 67;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label9.Location = new System.Drawing.Point(705, 169);
+            this.label9.Location = new System.Drawing.Point(703, 288);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 17);
             this.label9.TabIndex = 74;
@@ -291,7 +368,7 @@
             // 
             // puntos_txt
             // 
-            this.puntos_txt.Location = new System.Drawing.Point(777, 165);
+            this.puntos_txt.Location = new System.Drawing.Point(775, 284);
             this.puntos_txt.Name = "puntos_txt";
             this.puntos_txt.Size = new System.Drawing.Size(72, 20);
             this.puntos_txt.TabIndex = 73;
@@ -304,18 +381,6 @@
             this.nombre_carrera_txt.ReadOnly = true;
             this.nombre_carrera_txt.Size = new System.Drawing.Size(290, 20);
             this.nombre_carrera_txt.TabIndex = 72;
-            // 
-            // button4
-            // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackgroundImage = global::smart_carrer.Properties.Resources.down_yellow_arrow_icon_clip_art;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(954, 156);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(37, 31);
-            this.button4.TabIndex = 66;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // descripcion_pregunta_txt
             // 
@@ -388,9 +453,11 @@
             this.carreragrid,
             this.codigorespuesta_grid,
             this.respuestagrdi,
+            this.codaptitudgrid,
+            this.aptitudgrid,
             this.puntosgrid});
             this.dataGridView1.GridColor = System.Drawing.Color.Black;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 263);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 333);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -399,6 +466,70 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(974, 182);
             this.dataGridView1.TabIndex = 22;
+            // 
+            // codigo_grid
+            // 
+            this.codigo_grid.FillWeight = 15F;
+            this.codigo_grid.HeaderText = "Cod";
+            this.codigo_grid.Name = "codigo_grid";
+            this.codigo_grid.ReadOnly = true;
+            // 
+            // nombre_grid
+            // 
+            this.nombre_grid.FillWeight = 130F;
+            this.nombre_grid.HeaderText = "pregunta";
+            this.nombre_grid.Name = "nombre_grid";
+            this.nombre_grid.ReadOnly = true;
+            this.nombre_grid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // cod_carreregagrid
+            // 
+            this.cod_carreregagrid.FillWeight = 20F;
+            this.cod_carreregagrid.HeaderText = "cod";
+            this.cod_carreregagrid.Name = "cod_carreregagrid";
+            this.cod_carreregagrid.ReadOnly = true;
+            // 
+            // carreragrid
+            // 
+            this.carreragrid.FillWeight = 70F;
+            this.carreragrid.HeaderText = "carrera";
+            this.carreragrid.Name = "carreragrid";
+            this.carreragrid.ReadOnly = true;
+            // 
+            // codigorespuesta_grid
+            // 
+            this.codigorespuesta_grid.FillWeight = 20F;
+            this.codigorespuesta_grid.HeaderText = "cod";
+            this.codigorespuesta_grid.Name = "codigorespuesta_grid";
+            this.codigorespuesta_grid.ReadOnly = true;
+            // 
+            // respuestagrdi
+            // 
+            this.respuestagrdi.FillWeight = 50F;
+            this.respuestagrdi.HeaderText = "respuesta";
+            this.respuestagrdi.Name = "respuestagrdi";
+            this.respuestagrdi.ReadOnly = true;
+            // 
+            // codaptitudgrid
+            // 
+            this.codaptitudgrid.FillWeight = 20F;
+            this.codaptitudgrid.HeaderText = "Cod";
+            this.codaptitudgrid.Name = "codaptitudgrid";
+            this.codaptitudgrid.ReadOnly = true;
+            // 
+            // aptitudgrid
+            // 
+            this.aptitudgrid.FillWeight = 70F;
+            this.aptitudgrid.HeaderText = "Aptitud";
+            this.aptitudgrid.Name = "aptitudgrid";
+            this.aptitudgrid.ReadOnly = true;
+            // 
+            // puntosgrid
+            // 
+            this.puntosgrid.FillWeight = 20F;
+            this.puntosgrid.HeaderText = "puntos";
+            this.puntosgrid.Name = "puntosgrid";
+            this.puntosgrid.ReadOnly = true;
             // 
             // label6
             // 
@@ -445,69 +576,19 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackgroundImage = global::smart_carrer.Properties.Resources.save_file_disk_open_searsh_loading_clipboard_1513;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(949, 467);
+            this.button1.Location = new System.Drawing.Point(949, 539);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 58);
             this.button1.TabIndex = 16;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // codigo_grid
-            // 
-            this.codigo_grid.FillWeight = 15F;
-            this.codigo_grid.HeaderText = "Cod";
-            this.codigo_grid.Name = "codigo_grid";
-            this.codigo_grid.ReadOnly = true;
-            // 
-            // nombre_grid
-            // 
-            this.nombre_grid.FillWeight = 130F;
-            this.nombre_grid.HeaderText = "pregunta";
-            this.nombre_grid.Name = "nombre_grid";
-            this.nombre_grid.ReadOnly = true;
-            this.nombre_grid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // cod_carreregagrid
-            // 
-            this.cod_carreregagrid.FillWeight = 20F;
-            this.cod_carreregagrid.HeaderText = "cod";
-            this.cod_carreregagrid.Name = "cod_carreregagrid";
-            this.cod_carreregagrid.ReadOnly = true;
-            // 
-            // carreragrid
-            // 
-            this.carreragrid.FillWeight = 70F;
-            this.carreragrid.HeaderText = "carrera";
-            this.carreragrid.Name = "carreragrid";
-            this.carreragrid.ReadOnly = true;
-            // 
-            // codigorespuesta_grid
-            // 
-            this.codigorespuesta_grid.FillWeight = 20F;
-            this.codigorespuesta_grid.HeaderText = "cod";
-            this.codigorespuesta_grid.Name = "codigorespuesta_grid";
-            this.codigorespuesta_grid.ReadOnly = true;
-            // 
-            // respuestagrdi
-            // 
-            this.respuestagrdi.FillWeight = 50F;
-            this.respuestagrdi.HeaderText = "respuesta";
-            this.respuestagrdi.Name = "respuestagrdi";
-            this.respuestagrdi.ReadOnly = true;
-            // 
-            // puntosgrid
-            // 
-            this.puntosgrid.FillWeight = 15F;
-            this.puntosgrid.HeaderText = "puntos";
-            this.puntosgrid.Name = "puntosgrid";
-            this.puntosgrid.ReadOnly = true;
-            // 
             // tests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1036, 537);
+            this.ClientSize = new System.Drawing.Size(1036, 609);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -566,6 +647,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn carreragrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigorespuesta_grid;
         private System.Windows.Forms.DataGridViewTextBoxColumn respuestagrdi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codaptitudgrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aptitudgrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn puntosgrid;
+        private System.Windows.Forms.TextBox nombre_aptitud_txt;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox codigo_aptitud_txt;
     }
 }

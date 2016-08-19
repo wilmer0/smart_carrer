@@ -20,14 +20,13 @@ namespace smart_carrer
         private void timer1_Tick(object sender, EventArgs e)
         {
         
-            if (cont == 4)//si dura x segundos
+            if (cont == 6)//si dura x segundos
             {
                 timer1.Stop();
                 timer1.Enabled = false;
                 this.Hide();
                 menu me = new menu();
                 me.ShowDialog();
-                
             }
             else
             {

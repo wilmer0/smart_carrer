@@ -89,5 +89,11 @@ namespace smart_carrer
         {
             cargar_datos();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            busqueda_respuesta br = new busqueda_respuesta();
+            br.ShowDialog();
+        }
     }
 }

@@ -115,11 +115,11 @@ namespace smart_carrer
         public void cargar_preguntas_test()
         {
             dataGridView1.Rows.Clear();
-            string sql = "select tp.cod_pregunta,pr.descripcion,tp.cod_carrera,c.nombre,tp.cod_respuesta,rp.descripcion,tp.puntos  from test_vs_preguntas tp join test t on t.codigo=tp.cod_test join preguntas pr on pr.codigo=tp.cod_pregunta join respuestas rp on rp.codigo=tp.cod_respuesta join carreras c on c.codigo=tp.cod_carrera where tp.cod_test='"+codigo_txt.Text.Trim()+"'";
+            string sql="select tp.cod_pregunta,pr.descripcion,tp.cod_carrera,c.nombre,tp.cod_respuesta,rp.descripcion,tp.cod_aptitud,ap.nombre,tp.puntos from test_vs_preguntas tp join test t on t.codigo=tp.cod_test join preguntas pr on pr.codigo=tp.cod_pregunta join  respuestas rp on rp.codigo=tp.cod_respuesta join carreras c on c.codigo=tp.cod_carrera join aptitudes ap  on ap.codigo=tp.cod_aptitud where tp.cod_test='" + codigo_txt.Text.Trim() + "'";
             DataSet ds = utilidades.ejecutarcomando(sql);
             foreach(DataRow row in ds.Tables[0].Rows)
             {
-                dataGridView1.Rows.Add(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString());
+                dataGridView1.Rows.Add(row[0].ToString(), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), row[5].ToString(), row[6].ToString(), row[7].ToString(), row[8].ToString());
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -174,9 +174,9 @@ namespace smart_carrer
                 {
                     /*
                        alter proc insert_test_vs_preguntas
-                       @cod_test int,@cod_pregunta int,@cod_carrera int,@cod_respuesta int,@puntos float
+                      @cod_test int,@cod_pregunta int,@cod_carrera int,@cod_respuesta int,@cod_aptitud int,@puntos float
                      */
-                    sql = "exec insert_test_vs_preguntas '" + codigo_txt.Text.Trim() + "','" + row.Cells[0].Value.ToString() + "','" + row.Cells[2].Value.ToString() + "','" + row.Cells[4].Value.ToString() + "','" + row.Cells[6].Value.ToString() + "'";
+                    sql = "exec insert_test_vs_preguntas '" + codigo_txt.Text.Trim() + "','" + row.Cells[0].Value.ToString() + "','" + row.Cells[2].Value.ToString() + "','" + row.Cells[4].Value.ToString() + "','" + row.Cells[6].Value.ToString() + "','"+row.Cells[8].Value.ToString()+"'";
                     utilidades.ejecutarcomando(sql);
                 }
             }
@@ -231,20 +231,27 @@ namespace smart_carrer
                             {
                                 if (puntos_txt.Text.Trim() != "")
                                 {
-                                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                                    if (codigo_aptitud_txt.Text.Trim() != "")
                                     {
-                                        if (row.Cells[0].Value.ToString() == codigo_pregunta_txt.Text.Trim() && row.Cells[2].Value.ToString() == codigo_carrera_txt.Text.Trim() && row.Cells[4].Value.ToString() == codigo_respuesta_txt.Text.Trim())
+                                        foreach (DataGridViewRow row in dataGridView1.Rows)
                                         {
-                                            cont++;
+                                            if (row.Cells[0].Value.ToString() == codigo_pregunta_txt.Text.Trim() && row.Cells[2].Value.ToString() == codigo_carrera_txt.Text.Trim() && row.Cells[4].Value.ToString() == codigo_respuesta_txt.Text.Trim() && codigo_aptitud_txt.Text == row.Cells[6].Value.ToString())
+                                            {
+                                                cont++;
+                                            }
                                         }
-                                    }
-                                    if (cont == 0)
-                                    {
-                                        dataGridView1.Rows.Add(codigo_pregunta_txt.Text.Trim(), descripcion_pregunta_txt.Text.Trim(), codigo_carrera_txt.Text.Trim(), nombre_carrera_txt.Text.Trim(), codigo_respuesta_txt.Text.Trim(), descripcion_respuesta_txt.Text.Trim(), puntos_txt.Text.Trim());
+                                        if (cont == 0)
+                                        {
+                                            dataGridView1.Rows.Add(codigo_pregunta_txt.Text.Trim(), descripcion_pregunta_txt.Text.Trim(), codigo_carrera_txt.Text.Trim(), nombre_carrera_txt.Text.Trim(), codigo_respuesta_txt.Text.Trim(), descripcion_respuesta_txt.Text.Trim(), codigo_aptitud_txt.Text.Trim(), nombre_aptitud_txt.Text.Trim(), puntos_txt.Text.Trim());
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Esa opcion que intenta poner ya se encuentra seleccionada");
+                                        }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Ya la respuesta a esa pregunta con relacion a esa carrera se encuentra seleccionada");
+                                        MessageBox.Show("Falta la aptitud");
                                     }
                                 }
                                 else
@@ -360,6 +367,37 @@ namespace smart_carrer
                 DataSet ds = utilidades.ejecutarcomando(sql);
                 descripcion_respuesta_txt.Text = ds.Tables[0].Rows[0][0].ToString();
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            busqueda_aptitudes ba = new busqueda_aptitudes();
+            ba.pasado += new busqueda_aptitudes.pasar(ejecutar_codigo_aptitud);
+            ba.ShowDialog();
+            cargar_datos_aptitudes();
+        }
+        public void ejecutar_codigo_aptitud(string dato)
+        {
+            codigo_aptitud_txt.Text = dato.ToString();
+        }
+
+        public void cargar_datos_aptitudes()
+        {
+            if (codigo_aptitud_txt.Text.Trim() != "")
+            {
+                string sql = "select nombre,descripcion from aptitudes where codigo='" + codigo_aptitud_txt.Text.Trim() + "'";
+                DataSet ds = utilidades.ejecutarcomando(sql);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    nombre_aptitud_txt.Text = ds.Tables[0].Rows[0][0].ToString();
+                }
+            }
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            codigo_aptitud_txt.Clear();
+            nombre_aptitud_txt.Clear();
         }
     }
 }

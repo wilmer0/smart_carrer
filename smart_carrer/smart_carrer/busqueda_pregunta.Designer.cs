@@ -30,14 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(busqueda_pregunta));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.codigo_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.descripcion_txt = new System.Windows.Forms.TextBox();
-            this.codigo_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_grid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +67,28 @@
             this.dataGridView1.Size = new System.Drawing.Size(650, 193);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // codigo_grid
+            // 
+            this.codigo_grid.FillWeight = 5F;
+            this.codigo_grid.HeaderText = "Cod";
+            this.codigo_grid.Name = "codigo_grid";
+            this.codigo_grid.ReadOnly = true;
+            // 
+            // nombre_grid
+            // 
+            this.nombre_grid.FillWeight = 70F;
+            this.nombre_grid.HeaderText = "nombre";
+            this.nombre_grid.Name = "nombre_grid";
+            this.nombre_grid.ReadOnly = true;
+            this.nombre_grid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // estado_grid
+            // 
+            this.estado_grid.FillWeight = 5F;
+            this.estado_grid.HeaderText = "estado";
+            this.estado_grid.Name = "estado_grid";
+            this.estado_grid.ReadOnly = true;
             // 
             // button2
             // 
@@ -110,28 +133,6 @@
             this.descripcion_txt.TabIndex = 75;
             this.descripcion_txt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.descripcion_txt_KeyUp);
             // 
-            // codigo_grid
-            // 
-            this.codigo_grid.FillWeight = 5F;
-            this.codigo_grid.HeaderText = "Cod";
-            this.codigo_grid.Name = "codigo_grid";
-            this.codigo_grid.ReadOnly = true;
-            // 
-            // nombre_grid
-            // 
-            this.nombre_grid.FillWeight = 70F;
-            this.nombre_grid.HeaderText = "nombre";
-            this.nombre_grid.Name = "nombre_grid";
-            this.nombre_grid.ReadOnly = true;
-            this.nombre_grid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // estado_grid
-            // 
-            this.estado_grid.FillWeight = 5F;
-            this.estado_grid.HeaderText = "estado";
-            this.estado_grid.Name = "estado_grid";
-            this.estado_grid.ReadOnly = true;
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 276);
@@ -141,12 +142,25 @@
             this.textBox1.Size = new System.Drawing.Size(650, 96);
             this.textBox1.TabIndex = 76;
             // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackgroundImage = global::smart_carrer.Properties.Resources.icono_servicios1;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Location = new System.Drawing.Point(324, 378);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 58);
+            this.button3.TabIndex = 79;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // busqueda_pregunta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(674, 448);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.descripcion_txt);
             this.Controls.Add(this.label1);
@@ -177,5 +191,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_grid;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado_grid;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button3;
     }
 }

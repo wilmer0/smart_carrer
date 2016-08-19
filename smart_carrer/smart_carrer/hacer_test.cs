@@ -429,6 +429,7 @@ namespace smart_carrer
                 {
                     codigoCarrera = row1[0].ToString();
                     puntos = Convert.ToDouble(getPuntosByTestCarrera(codigo_test_presionado.ToString(), row1[0].ToString()));
+                    //para sacar el total de puntos que se registro en el test 
                     string sql2 = "select sum(puntos) from test_resultado_vs_respuestas where codigo='" + codigoTestRespuesta.ToString() + "' and cod_test='" + codigo_test_presionado.ToString() + "' and cod_carrera='" + row1[0].ToString() + "'";
                     DataSet dx = utilidades.ejecutarcomando(sql2);
                     if (dx.Tables[0].Rows[0][0].ToString() != "")

@@ -90,6 +90,12 @@ namespace smart_carrer
         {
             cargar_datos();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            busqueda_facultad bf = new busqueda_facultad();
+            bf.ShowDialog();
+        }
         
     }
 }
